@@ -4,13 +4,13 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script type="text/javascript" src="jquery-3.3.1.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="jquery-3.3.1.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
@@ -56,7 +56,7 @@
 
     /* Set black background color, white text and some padding */
     footer {
-      background-color: #555;
+      background-color: silver;
       color: white;
      padding: 15px;
     }
@@ -68,6 +68,26 @@
         padding: 15px;
       }
       .row.content {height:auto;}
+    }
+
+    .film-card {
+        position: relative;
+        width: inherit;
+        height: 250px;
+        display: flex;
+    }
+
+    .image-card {
+        padding: 1.75%;
+        left: 0;
+        width: auto;
+        height: 100%;
+    }
+
+    .rating-card {
+        position: absolute;
+        top: 0%;
+        right: 5%;
     }
   </style>
 </head>
@@ -150,7 +170,7 @@
     </div>
     <div class="col-sm-8 text-left">
 
-        <h1>Results:</h1>
+        <h2>Results:</h2>
         <div class="dropdown ">
 
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -163,7 +183,23 @@
           </ul>
       </div>
         <div id="nomeqq" >
-            
+            <hr>
+            <div class="film-card">
+                <img class="image-card" src="https://m.media-amazon.com/images/M/MV5BNGY1Y2RlZmItZTQ1Zi00MzUyLThiYzEtZjA2OTIzMTM1YTkwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"/>
+                <div class="content-card">
+                    <h1>Paranormal</h1>
+
+                    <br>
+                    <h4>Year: 2020</h4>
+                    <h4>Genre: Gay</h4>
+                    <h4>Actors: zé, maria e o menino jesus</h4>
+                    <h4>Director: Deus</h4>
+                </div>
+                <div class="rating-card">
+                    <h2>4.2/5</h2>
+                </div>
+            </div>
+            <hr>
         </div>
 
     </div>
@@ -179,7 +215,19 @@
 </div>
 
 <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+  <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
 </footer>
 </body>
 </html>
