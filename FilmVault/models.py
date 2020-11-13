@@ -12,7 +12,8 @@ query = "xquery {} {}"
 
 
 def getFilmsSortedByYear(pageIndex, n, syear = None, fyear = None, cat = None):
-    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+    session = BaseXClient.Session('192.168.1.196', 1984, 'admin', 'admin')
+
 
     result = None
     if cat:
@@ -29,3 +30,5 @@ def getFilmsSortedByYear(pageIndex, n, syear = None, fyear = None, cat = None):
     dict = xmltodict.parse(result)
 
     return [movie for movie in dict['root']['elem']]
+
+getFilmsSortedByYear(0,10)

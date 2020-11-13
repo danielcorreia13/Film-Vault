@@ -141,32 +141,34 @@
 <div class="container-fluid  text-left">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-        <div class="col-sm-50">
-            <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Genre
-            </button>
-        </div>
-        <div class="collapse" id="collapseExample">
-          <input type="checkbox" id="Action" name="Action" value="Action">
-          <label for="Action"> Action</label><br>
-          <input type="checkbox" id="Horror" name="Horror" value="Horror">
-          <label for="Horror"> Horror</label><br>
-          <input type="checkbox" id="Comedy" name="Comedy" value="Comedy">
-          <label for="Comedy"> Comedy</label><br>
-         </div>
-        <div class="col-sm-50">
-            <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
-                Year
-            </button>
-        </div>
-        <div class="collapse" id="collapseExample1">
-           <p class="text-justify">From:</p>
-            <input type="range" min="1950" max="2020" value="1950" oninput="this.nextElementSibling.value = this.value" onchange = "document.getElementById('to').min=this.value;" id="from">
-            <output>1950</output>
-            <p class="text-justify">To:</p>
-            <input type="range" min="1950"  min = "document.getElementById('from').value" max="2020" value="document.getElementById('from').value"  oninput="this.nextElementSibling.value = this.value" id="to">
-            <output></output>
-        </div>
+        
+            <div class="col-sm-50">
+                <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Genre
+                </button>
+            </div>
+            <div class="collapse" id="collapseExample">
+              <input type="checkbox" id="Action" name="Action" value="Action">
+              <label for="Action"> Action</label><br>
+              <input type="checkbox" id="Horror" name="Horror" value="Horror">
+              <label for="Horror"> Horror</label><br>
+              <input type="checkbox" id="Comedy" name="Comedy" value="Comedy">
+              <label for="Comedy"> Comedy</label><br>
+             </div>
+            <div class="col-sm-50">
+                <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+                    Year
+                </button>
+            </div>
+            <div class="collapse" id="collapseExample1">
+               <p class="text-justify">From:</p>
+                <input type="range" min="1950" max="2020" value="1950" oninput="this.nextElementSibling.value = this.value" onchange = "document.getElementById('to').min=this.value;" id="from">
+                <output>1950</output>
+                <p class="text-justify">To:</p>
+                <input type="range" min="1950"  min = "document.getElementById('from').value" max="2020" value="document.getElementById('from').value"  oninput="this.nextElementSibling.value = this.value" id="to">
+                <output></output>
+            </div>
+
     </div>
     <div class="col-sm-8 text-left">
 
@@ -184,22 +186,26 @@
       </div>
         <div id="nomeqq" >
             <hr>
-            <div class="film-card">
-                <img class="image-card" src="https://m.media-amazon.com/images/M/MV5BNGY1Y2RlZmItZTQ1Zi00MzUyLThiYzEtZjA2OTIzMTM1YTkwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"/>
-                <div class="content-card">
-                    <h1>Paranormal</h1>
+            {% block content %}
+                {% for film in num_films %}
+                    <div class="film-card">
+                        <img class="image-card" src={[imgs}}/>
+                        <div class="content-card">
+                            <h1>{{titles}}</h1>
 
-                    <br>
-                    <h4>Year: 2020</h4>
-                    <h4>Genre: Gay</h4>
-                    <h4>Actors: zé, maria e o menino jesus</h4>
-                    <h4>Director: Deus</h4>
-                </div>
-                <div class="rating-card">
-                    <h2>4.2/5</h2>
-                </div>
-            </div>
-            <hr>
+                            <br>
+                            <h4>{{titles}}</h4>
+                            <h4>{{genres}}</h4>
+                            <h4>{{actors}}</h4>
+                            <h4>{{directors}}</h4>
+                        </div>
+                        <div class="rating-card">
+                            <h2>{{ratings}}</h2>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            {% endblock %}
         </div>
 
     </div>
