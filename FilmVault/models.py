@@ -1,12 +1,20 @@
 import xmltodict
 from BaseXClient import BaseXClient
 from django.db import models
+from django.conf import settings
 from enum import Enum
+from pathlib import Path
+import os
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 class UDF():
     filmsByYear = "funcs:filmsOrderByYearPage({}, {} {})"
 
-module_import = "import module namespace funcs = 'funcs' at '/Data/Universidade/EDC/pythonProject/Querys/funcs/funcs.xq'; \n "
+
+module_import = "import module namespace funcs = 'funcs' at '" + str(BASE_DIR) + "/querys/funcs.xq'; \n "
 query = "xquery {} {}"
 
 
@@ -31,4 +39,7 @@ def getFilmsSortedByYear(pageIndex, n, syear = None, fyear = None, cat = None):
 
     return [movie for movie in dict['root']['elem']]
 
+<<<<<<< HEAD
 getFilmsSortedByYear(0,10)
+=======
+>>>>>>> querys
