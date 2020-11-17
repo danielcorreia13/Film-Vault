@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('search/', views.searchpage, name='searchpage'),
+    path('search/results',views.filmsResults, name='searchpage'),
 ]

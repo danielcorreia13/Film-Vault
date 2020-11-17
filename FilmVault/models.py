@@ -21,7 +21,7 @@ query = "xquery {} {}"
 
 
 def getFilmsSortedByYear(pageIndex, n, syear = None, fyear = None, cat = None):
-    session = BaseXClient.Session('192.168.1.196', 1984, 'admin', 'admin')
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
 
 
     result = None
@@ -43,7 +43,7 @@ def getFilmsSortedByYear(pageIndex, n, syear = None, fyear = None, cat = None):
     return [movie for movie in dict['root']['elem']]
 
 def getFilmsSortedByAlfa(pageIndex, n, syear = None, fyear = None, cat = None):
-    session = BaseXClient.Session('192.168.1.196', 1984, 'admin', 'admin')
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
 
 
     q = None
@@ -65,7 +65,7 @@ def getFilmsSortedByAlfa(pageIndex, n, syear = None, fyear = None, cat = None):
     return [movie for movie in dict['root']['elem']]
 
 def getFilmXML(id):
-    session = BaseXClient.Session('192.168.1.196', 1984, 'admin', 'admin')
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
 
     result = session.execute(query.format(module_import, UDF.filmXML.format(str(id))))
 

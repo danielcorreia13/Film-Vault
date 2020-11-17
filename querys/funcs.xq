@@ -112,7 +112,7 @@ declare function funcs:filmsOrderByYearPage($page, $n) as element()*
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
