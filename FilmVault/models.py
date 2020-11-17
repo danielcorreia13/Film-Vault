@@ -21,7 +21,11 @@ query = "xquery {} {}"
 
 
 def getFilmsSortedByYear(pageIndex, n, syear = None, fyear = None, cat = None):
+<<<<<<< HEAD
     session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+=======
+    session = BaseXClient.Session("localhost", 1984, 'admin', 'admin')
+>>>>>>> 8a5af06d176568f4642dd8d8a38267168b3ab781
 
 
     result = None
@@ -61,7 +65,6 @@ def getFilmsSortedByAlfa(pageIndex, n, syear = None, fyear = None, cat = None):
 
     result = session.execute(q)
     dict = xmltodict.parse(result)
-
     return [movie for movie in dict['root']['elem']]
 
 def getFilmXML(id):
@@ -76,5 +79,5 @@ for i in getFilmsSortedByAlfa(400,10):
     print(i)
     print("\n")
 
-print(getFilmXML('0948470'))
+# print(getFilmXML('0948470'))
 
