@@ -7,7 +7,7 @@ declare function funcs:filmsOrderByYearPage($page, $n,$syear, $fyear, $categorie
   let $cat := tokenize($categories, ' ')
   let $films := 
                 for $film in collection('Films')//movie
-                order by $film/year
+                order by $film/year descending
                 where $film/year >= $syear and $film/year <= $fyear
                 for $genre in $film/genres//item
                 where contains($cat, data($genre)) 
@@ -42,7 +42,7 @@ declare function funcs:filmsOrderByYearPage($page, $n, $categories) as element()
   let $cat := tokenize($categories, ' ')
   let $films := 
                 for $film in collection('Films')//movie
-                order by $film/year
+                order by $film/year  descending
                 for $genre in $film/genres//item
                 where contains($cat, data($genre)) 
                 return $film
@@ -75,7 +75,7 @@ declare function funcs:filmsOrderByYearPage( $page, $n, $syear, $fyear) as eleme
   {
   let $films := 
                 for $film in collection('Films')//movie
-                order by $film/year
+                order by $film/year descending
                 where $film/year >= $syear and $film/year <= $fyear
                 return $film
                 
@@ -106,7 +106,7 @@ declare function funcs:filmsOrderByYearPage($page, $n) as element()*
    <root>
   {
   let $films := for $film in collection('Films')//movie
-                order by $film/year
+                order by $film/year descending
                 return $film
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>

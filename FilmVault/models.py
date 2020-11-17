@@ -79,10 +79,14 @@ def newFilm(id):
     xml = movie.asXML(_with_add_keys=False)
     print(xml)
 
-# for i in getFilmsSortedByAlfa(400,10):
-#     print(i)
-#     print("\n")
+for i in getFilmsSortedByYear(0,50):
+    print(i['directors'])
+    print("\n")
 
 # print(getFilmXML('0948470'))
+
 #newFilm("9624766")
+
+# newFilm("9624766")
+
 
