@@ -22,7 +22,11 @@ query = "xquery {} {}"
 
 
 def getFilmsSortedByYear(pageIndex, n, syear = None, fyear = None, cat = None):
+<<<<<<< HEAD
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+=======
     session = BaseXClient.Session("localhost", 1984, 'admin', 'admin')
+>>>>>>> 8a5af06d176568f4642dd8d8a38267168b3ab781
 
 
     result = None

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from FilmVault.models import *
 
 # Create your views here.
 
@@ -9,16 +10,15 @@ def searchpage(request):
     tparams = {}
     return render(request, 'searchpage.html')
 
-def filmsResults(request,num_films, ):
+def filmsResults(request):
 
+    dic = getFilmsSortedByYear(0, 4)
+    print(dic)
     tparams= {
-        'imgs':,
-        'titles':,
-        'years':,
-        'genres':,
-        'actors':,
-        'directors':,
-        'ratings':,
-        'num_films':range(num_films),
-
+        "dic": dic,
     }
+
+    return render(request,"searchpage.html",tparams)
+
+#def filmDic()
+
