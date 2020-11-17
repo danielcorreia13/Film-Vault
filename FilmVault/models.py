@@ -21,6 +21,7 @@ query = "xquery {} {}"
 
 def executeQuery(funcSrt, pageIndex, n, syear = None, fyear = None, cat = None):
     session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+
     result = None
 
     if cat:
@@ -66,5 +67,9 @@ for i in getFilmsSortedByYear(100,2,1997, 2002):
     print("\n")
 
 # print(getFilmXML('0948470'))
+
+#newFilm("9624766")
+
 # newFilm("9624766")
+
 

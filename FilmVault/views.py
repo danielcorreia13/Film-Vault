@@ -12,7 +12,7 @@ def searchpage(request):
 
 def filmsResults(request):
 
-    dic = getFilmsSortedByYear(0, 4)
+    dic = getFilmsSortedByYear(0, 50)
     print(dic)
     tparams= {
         "dic": dic,

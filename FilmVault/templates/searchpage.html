@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>FilmVault</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://code.jquery.com/jquery-migrate-3.3.1.min.js"
@@ -213,14 +213,28 @@
                                         {{i}} |
                                     {% endfor %}
                                     </h4>
+                                    <h4>
                                     {% if movies.directors.items %} | {%  endif %}
-                                    {% for i in movies.directors.name %}
-                                        <h4>{{i}} |</h4>
-                                    {% endfor %}
+                                    {% if movies.directors.name|length == 2 %}
+                                        {{ movies.directors.name.0}} |
+                                        {{ movies.directors.name.1}}
+                                    {% else %}
+                                        {{ movies.directors.name}}
+                                    {% endif %}
+                                     {% if movies.directors.items %} | {%  endif %}
+                                    </h4>
                                 </div>
                                 <div class="rating-card">
-                                    <h2>{{movies.rating}}</h2>
-                                    <h5>{{movies.votes}}</h5>
+                                    {% if movies.rating == None %}
+                                        <h2>0.0/10</h2>
+                                    {% else %}
+                                        <h2>{{movies.rating}}/10</h2>
+                                    {% endif %}
+                                    {% if movies.votes == None %}
+                                        <h5>No votes</h5>
+                                    {% else %}
+                                        <h5>{{movies.votes}}</h5>
+                                    {% endif%}
                                 </div>
                             </div>
                             <hr>
