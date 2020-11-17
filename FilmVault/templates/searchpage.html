@@ -213,10 +213,12 @@
                                         {{i}} |
                                     {% endfor %}
                                     </h4>
+                                    <h4>
                                     {% if movies.directors.items %} | {%  endif %}
-                                    {% for i in movies.directors.name %}
-                                        <h4>{{i}} |</h4>
-                                    {% endfor %}
+{#                                    {% for i in movies.directors.name %}#}
+                                        {{movies.directors.name}}
+{#                                    {% endfor %}#}
+                                    </h4>
                                 </div>
                                 <div class="rating-card">
                                     <h2>{{movies.rating}}</h2>
