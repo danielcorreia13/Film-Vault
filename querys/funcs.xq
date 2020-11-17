@@ -12,9 +12,11 @@ declare function funcs:filmsOrderByYearPage($page, $n,$syear, $fyear, $categorie
                 for $genre in $film/genres//item
                 where contains($cat, data($genre)) 
                 return $film
+  let $count := count($films)
                 
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
+          <count>{ $count }</count>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
           <cover>{ data($film/cover-url) }</cover>
@@ -46,9 +48,11 @@ declare function funcs:filmsOrderByYearPage($page, $n, $categories) as element()
                 for $genre in $film/genres//item
                 where contains($cat, data($genre)) 
                 return $film
-                
+  let $count := count($films)
+
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
+          <count>{ $count }</count>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
           <cover>{ data($film/cover-url) }</cover>
@@ -78,9 +82,11 @@ declare function funcs:filmsOrderByYearPage( $page, $n, $syear, $fyear) as eleme
                 order by $film/year descending
                 where $film/year >= $syear and $film/year <= $fyear
                 return $film
+  let $count := count($films)
                 
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
+          <count>{ $count }</count>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
           <cover>{ data($film/cover-url) }</cover>
@@ -108,8 +114,11 @@ declare function funcs:filmsOrderByYearPage($page, $n) as element()*
   let $films := for $film in collection('Films')//movie
                 order by $film/year descending
                 return $film
+  let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
-  return <elem>
+  return 
+         <elem>
+          <count>{ $count }</count>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
           <cover>{ data($film/cover-url) }</cover>
@@ -148,9 +157,11 @@ declare function funcs:filmsOrderByAlfaPage($page, $n,$syear, $fyear, $categorie
                 for $genre in $film/genres//item
                 where contains($cat, data($genre)) 
                 return $film
-                
+
+  let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
+          <count>{ $count }</count>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
           <cover>{ data($film/cover-url) }</cover>
@@ -182,9 +193,11 @@ declare function funcs:filmsOrderByAlfaPage($page, $n, $categories) as element()
                 for $genre in $film/genres//item
                 where contains($cat, data($genre)) 
                 return $film
+  let $count := count($films)
                 
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
+          <count>{ $count }</count>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
           <cover>{ data($film/cover-url) }</cover>
@@ -214,9 +227,11 @@ declare function funcs:filmsOrderByAlfaPage( $page, $n, $syear, $fyear) as eleme
                 order by $film/original-title
                 where $film/year >= $syear and $film/year <= $fyear
                 return $film
+  let $count := count($films)
                 
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
+          <count>{ $count }</count>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
           <cover>{ data($film/cover-url) }</cover>
@@ -244,8 +259,10 @@ declare function funcs:filmsOrderByAlfaPage($page, $n) as element()*
   let $films := for $film in collection('Films')//movie
                 order by $film/original-title
                 return $film
+  let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
+          <count>{ $count }</count>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
           <cover>{ data($film/cover-url) }</cover>
