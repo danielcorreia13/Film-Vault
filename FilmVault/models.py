@@ -12,7 +12,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 class UDF():
     filmsByYear = "funcs:filmsOrderByYearPage({}, {} {})"
-
+    filmsByAlfa = "funcs:filmsOrderByAlfaPage({}, {} {})"
+    filmXML     = "funcs:getFilm({})"
 
 module_import = "import module namespace funcs = 'funcs' at '" + str(BASE_DIR) + "/querys/funcs.xq'; \n "
 query = "xquery {} {}"
@@ -26,20 +27,54 @@ def getFilmsSortedByYear(pageIndex, n, syear = None, fyear = None, cat = None):
     result = None
     if cat:
         if syear != None and fyear != None:
-            result = session.execute(query.format(module_import, UDF.filmsByYear.format(pageIndex, n, ", {}, {}, {}".format(syear, fyear, cat))))
+            q = query.format(module_import, UDF.filmsByYear.format(pageIndex, n, ", {}, {}, {}".format(syear, fyear, cat)))
         else:
-            result = session.execute(query.format(module_import, UDF.filmsByYear.format(pageIndex, n, ", {}".format(cat))))
+            q = query.format(module_import, UDF.filmsByYear.format(pageIndex, n, ", {}".format(cat)))
     else:
         if syear != None and fyear != None:
-            result = session.execute(query.format(module_import, UDF.filmsByYear.format(pageIndex, n, ", {}, {}".format(syear, fyear))))
+            q = query.format(module_import, UDF.filmsByYear.format(pageIndex, n, ", {}, {}".format(syear, fyear)))
         else:
-            result = session.execute(query.format(module_import, UDF.filmsByYear.format(pageIndex, n, '')))
+            q = query.format(module_import, UDF.filmsByYear.format(pageIndex, n, ''))
 
+
+    result = session.execute(q)
     dict = xmltodict.parse(result)
 
     return [movie for movie in dict['root']['elem']]
 
-<<<<<<< HEAD
-getFilmsSortedByYear(0,10)
-=======
->>>>>>> querys
+def getFilmsSortedByAlfa(pageIndex, n, syear = None, fyear = None, cat = None):
+    session = BaseXClient.Session('192.168.1.196', 1984, 'admin', 'admin')
+
+
+    q = None
+    if cat:
+        if syear != None and fyear != None:
+            q = query.format(module_import, UDF.filmsByAlfa.format(pageIndex, n, ", {}, {}, {}".format(syear, fyear, cat)))
+        else:
+            q = query.format(module_import, UDF.filmsByAlfa.format(pageIndex, n, ", {}".format(cat)))
+    else:
+        if syear != None and fyear != None:
+            q = query.format(module_import, UDF.filmsByAlfa.format(pageIndex, n, ", {}, {}".format(syear, fyear)))
+        else:
+            q = query.format(module_import, UDF.filmsByAlfa.format(pageIndex, n, ''))
+
+
+    result = session.execute(q)
+    dict = xmltodict.parse(result)
+
+    return [movie for movie in dict['root']['elem']]
+
+def getFilmXML(id):
+    session = BaseXClient.Session('192.168.1.196', 1984, 'admin', 'admin')
+
+    result = session.execute(query.format(module_import, UDF.filmXML.format(str(id))))
+
+
+    return result
+
+for i in getFilmsSortedByAlfa(400,10):
+    print(i)
+    print("\n")
+
+print(getFilmXML('0948470'))
+
