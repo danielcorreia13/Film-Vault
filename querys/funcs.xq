@@ -17,7 +17,7 @@ declare function funcs:filmsOrderByYearPage($page, $n,$syear, $fyear, $categorie
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
@@ -25,7 +25,7 @@ declare function funcs:filmsOrderByYearPage($page, $n,$syear, $fyear, $categorie
           }
           </actors>
           <directors>{
-          $film/directors//name
+          subsequence( $film/directors//name , 0, 3)
         }
           </directors>
           <year>{ $film/year/text() }</year>
@@ -51,7 +51,7 @@ declare function funcs:filmsOrderByYearPage($page, $n, $categories) as element()
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
@@ -59,7 +59,7 @@ declare function funcs:filmsOrderByYearPage($page, $n, $categories) as element()
           }
           </actors>
           <directors>{
-          $film/directors//name
+          subsequence( $film/directors//name , 0, 3)
         }
           </directors>
           <year>{ $film/year/text() }</year>
@@ -83,7 +83,7 @@ declare function funcs:filmsOrderByYearPage( $page, $n, $syear, $fyear) as eleme
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
@@ -91,7 +91,7 @@ declare function funcs:filmsOrderByYearPage( $page, $n, $syear, $fyear) as eleme
           }
           </actors>
           <directors>{
-          $film/directors//name
+          subsequence( $film/directors//name , 0, 3)
         }
           </directors>
           <year>{ $film/year/text() }</year>
@@ -112,7 +112,7 @@ declare function funcs:filmsOrderByYearPage($page, $n) as element()*
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
@@ -120,7 +120,7 @@ declare function funcs:filmsOrderByYearPage($page, $n) as element()*
           }
           </actors>
           <directors>{
-          $film/directors//name
+          subsequence( $film/directors//name , 0, 3)
         }
           </directors>
           <year>{ $film/year/text() }</year>
@@ -153,7 +153,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n,$syear, $fyear, $categorie
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
@@ -161,7 +161,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n,$syear, $fyear, $categorie
           }
           </actors>
           <directors>{
-          $film/directors//name
+          subsequence( $film/directors//name , 0, 3)
         }
           </directors>
           <year>{ $film/year/text() }</year>
@@ -187,7 +187,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n, $categories) as element()
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
@@ -195,7 +195,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n, $categories) as element()
           }
           </actors>
           <directors>{
-          $film/directors//name
+          subsequence( $film/directors//name , 0, 3)
         }
           </directors>
           <year>{ $film/year/text() }</year>
@@ -219,7 +219,7 @@ declare function funcs:filmsOrderByAlfaPage( $page, $n, $syear, $fyear) as eleme
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
@@ -227,7 +227,7 @@ declare function funcs:filmsOrderByAlfaPage( $page, $n, $syear, $fyear) as eleme
           }
           </actors>
           <directors>{
-          $film/directors//name
+          subsequence( $film/directors//name , 0, 3)
         }
           </directors>
           <year>{ $film/year/text() }</year>
@@ -248,7 +248,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n) as element()*
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
@@ -256,7 +256,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n) as element()*
           }
           </actors>
           <directors>{
-          $film/directors//name
+          subsequence( $film/directors//name , 0, 3)
         }
           </directors>
           <year>{ $film/year/text() }</year>
@@ -276,7 +276,7 @@ declare function funcs:getFilms() as element()*
   return <elem>
           <id>{ data($film/imdbid) }</id>
           <title>{ data($film/original-title) }</title>
-          <cover-url>{ data($film/cover-url) }</cover-url>
+          <cover>{ data($film/cover-url) }</cover>
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
@@ -284,7 +284,7 @@ declare function funcs:getFilms() as element()*
           }
           </actors>
           <directors>{
-          $film/directors//name
+          subsequence( $film/directors//name , 0, 3)
         }
           </directors>
           <year>{ $film/year/text() }</year>

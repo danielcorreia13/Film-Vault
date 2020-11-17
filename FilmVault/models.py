@@ -5,6 +5,7 @@ from django.conf import settings
 from enum import Enum
 from pathlib import Path
 import os
+from imdb import IMDb
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -71,9 +72,17 @@ def getFilmXML(id):
 
     return result
 
-for i in getFilmsSortedByAlfa(400,10):
-    print(i)
-    print("\n")
+def newFilm(id):
+    print(id)
+    ia = IMDb('https')
+    movie = ia.get_movie(str(id))
+    xml = movie.asXML(_with_add_keys=False)
+    print(xml)
+
+# for i in getFilmsSortedByAlfa(400,10):
+#     print(i)
+#     print("\n")
 
 # print(getFilmXML('0948470'))
+newFilm("9624766")
 
