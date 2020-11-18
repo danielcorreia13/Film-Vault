@@ -3,15 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <title>FilmVault</title>
+
+      <!--  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+        <script src="https://code.jquery.com/jquery-migrate-3.3.1.min.js"
+        integrity="sha256-APllMc0V4lf/Rb5Cz4idWUCYlBDG3b0EcN1Ushd3hpE="
+        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+
     <style>
         body{
-            background: black;
+            background: #222222; <!--#060016-->
+        }
+        div.title{
+            color: whitesmoke;
+            font-size: 125px;
+            text-align: center;
+            padding-top: 8%;
+
+        }
+        div.col-xs-5{
+            left:28%;
+            height: 250px;
+            position: relative;
+        }
+
+        .form-control{
+            height:45px; !important;
+            font-size: 15px;
+            position: absolute;
+            top:20%;
+        }
+
+        .image-card{
+            padding: 1.75%;
+            left: 0;
+            width: auto;
+            height: 75%;
+        }
+
+        rss{
+            position:absolute;
+            bottom:2px;
+            z-index: 0;
+        }
+
+        div.row{
+            left:1%;
+            color: whitesmoke;
+            position: relative;
+            height: 350px;
+            display: flex;
+            width: 1800px;
         }
 
 
+        div.news{
+            position: relative;
+            width: 33%;
+            height:350px;
+        }
+
+        .carousel {
+          width: 100%;
+        }
+
+        .slide-box {
+          display: flex;
+          justify-content: space-between;
+        }
+
+/*
+        @media (min-width: 576px) and (max-width: 767.98px) and (min-height: 300px){
+          .slide-box img {
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+          }
+        }*/
+/*
+        @media (min-width: 768px) and (max-width: 991.98px){
+          .slide-box img {
+            -ms-flex: 0 0 33.3333%;
+            flex: 0 0 33.3333%;
+            max-width: 33.3333%;
+          }
+        }
+*/
+/*
+        @media (min-width: 992px)
+        {
+          .slide-box img {
+            -ms-flex: 0 0 33%;
+            flex: 0 0 33%;
+            max-width: 33%;
+            width: 100%;
+          }
+        }
+*/
+        .carousel-caption {
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 20px;
+          border-radius: .5rem;
+        }
     </style>
 </head>
 <body>
+
+<div class="title">FilmVault</div>
+    <div class="col-xs-5">
+      <!--  <div class="input-group">
+            <div class="input-group-btn search-panel">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span id="search_concept">Filter by</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#contains">Contains</a></li>
+                  <li><a href="#its_equal">It's equal</a></li>
+                  <li><a href="#greather_than">Greather than ></a></li>
+                  <li><a href="#less_than">Less than < </a></li>
+                  <li class="divider"></li>
+                  <li><a href="#all">Anything</a></li>
+                </ul>
+            </div>
+            <input type="hidden" name="search_param" value="all" id="search_param">
+            <input type="text" class="form-control" name="x" placeholder="Search term...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+        </div>-->
+
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+    </div>
+
+<div class="rss">
+  <div class="row">
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+
+            <div class="slide-box">
+                {% block content%}
+                    {% for n in news %}
+                        {% if forloop.counter0 < numofnews %}
+                            <div class="news">
+                                 <a  href={{ n.link }}>
+                                    <img class="image-card " src={{ n.imglink }}>
+                                </a>
+                                <h4>{{ n.title }}</h4>
+                                <h5>{{ n.description }}</h5>
+
+                                <h6>{{ n.pubdate }}</h6>
+
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+
+        </div>
+        <div class="carousel-item">
+          <div class="d-none d-lg-block">
+            <div class="slide-box">
+                    {% for n in news %}
+                        {% if forloop.counter0 >= numofnews %}
+                            <div class="news">
+                                 <a  href={{ n.link }}>
+                                    <img class="image-card " src={{ n.imglink }}>
+                                </a>
+                                <h4>{{ n.title }}</h4>
+                                <h5>{{ n.description }}</h5>
+
+                                <h6>{{ n.pubdate }}</h6>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

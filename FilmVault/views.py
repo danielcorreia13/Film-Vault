@@ -1,11 +1,31 @@
 from django.shortcuts import render
 from FilmVault.models import *
+import xml.etree.ElementTree as ET
+import lxml.etree as LET #to use on xslt
+import feedparser
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'index.html')
+    feeds = feedparser.parse("https://screenrant.com/feed/")
+    filmNews = []
+    for feed in feeds["entries"]:
+        if len(filmNews) < 6:
+            filmNews.append({
+                "title": feed["title"],
+                "link": feed["link"],
+                "description": feed["summary"].replace("&#039;", "'"),
+                "imglink": feed["content"][0]["value"].split('"')[1::2][0],
+                "pubdate": feed["published"]
+            })
+
+    tparams = {
+        "news": filmNews,
+        "numofnews": 3
+    }
+
+    return render(request, "homepage.html", tparams)
 
 
 def film_results(request, num_page=1):
