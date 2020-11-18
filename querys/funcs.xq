@@ -119,7 +119,6 @@ declare function funcs:filmsOrderByYearPage( $search, $page, $n) as element()*
             for $film in collection('Films')//movie
             order by $film/year descending
             where contains(data($film/original-title), $search)
-            where contains(data($film/original-title), $search)
             return $film
   let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
