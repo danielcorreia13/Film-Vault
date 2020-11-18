@@ -22,4 +22,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('search/', views.film_results, name='film_results'),
     path('search/<int:num_page>/', views.film_results, name='film_results'),
+    path("login/", views.loginView, name="login"),
+    path("adminPage/", views.adminPage, name="adminpage"),
+    path("logout", views.logoutView, name="logout")
 ]

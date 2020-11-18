@@ -103,4 +103,3 @@ def validate(xml, schemaUrl):
 
 
 
-test()

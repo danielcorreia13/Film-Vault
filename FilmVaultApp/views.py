@@ -1,10 +1,8 @@
-from django.shortcuts import render
-from FilmVaultApp.models import *
-import xml.etree.ElementTree as ET
-import lxml.etree as LET #to use on xslt
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 import feedparser
-from FilmVaultApp.myLib.baseXquerys import getFilmsSortedByYear, getFilmXML, getFilmsSortedByAlfa
-
+from FilmVaultApp.myLib.baseXquerys import getFilmsSortedByYear, getFilmXML, getFilmsSortedByAlfa, newFilm
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 
@@ -44,3 +42,52 @@ def film_results(request, num_page=1):
 
     return render(request, "searchpage.html", tparams)
 
+def logoutView(request):
+    logout(request)
+    return redirect("login")
+
+def loginView(request):
+    if 'username' in request.POST and 'password' in request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request,user)
+            return redirect("adminpage")
+        else:
+            return render(request, "login.html",
+                          {
+                              'error' : True
+                          })
+    else:
+        return render(request,
+                      "login.html",
+                      {
+                          'error' : False
+                      })
+
+@login_required
+def adminPage(request):
+    if 'url' in request.POST:
+        url = request.POST['url']
+        error = False
+        try:
+            fields = url.split("/")
+            id = fields[4][2:]
+            newFilm(id)
+        except:
+            error = True
+        if not error:
+            return render(request, "adminpage.html")
+
+        else:
+            return render(request, "adminpage.html",
+                          {
+                              'error' : True
+                          })
+    else:
+        return render(request,
+                      "adminpage.html",
+                      {
+                          'error' : False
+                      })
