@@ -6,7 +6,7 @@ from enum import Enum
 from pathlib import Path
 import os
 from imdb import IMDb
-
+from lxml import etree
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +23,7 @@ def executeQuery(funcSrt, pageIndex, n, syear = None, fyear = None, cat = None):
     session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
 
     result = None
-
+    pageIndex -= 1
     if cat:
         if syear != None and fyear != None:
             q = query.format(module_import, funcSrt.format(pageIndex, n, ", {}, {}, {}".format(syear, fyear, cat)))
@@ -61,6 +61,8 @@ def newFilm(id):
     movie = ia.get_movie(str(id))
     xml = movie.asXML(_with_add_keys=False)
     print(xml)
+    tree = etree.fromstring(xml)
+    print(tree)
 
 for i in getFilmsSortedByYear(100,2,1997, 2002):
     print(i)
