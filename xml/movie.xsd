@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="movie" type="movieType"/>
+  <xs:complexType name="original-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="characterType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="name"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="current-roleType">
+    <xs:sequence>
+      <xs:element type="characterType" name="character"/>
+      <xs:element type="xs:string" name="notes"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="personType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="name"/>
+      <xs:element type="current-roleType" name="current-role" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="xs:string" name="notes" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="castType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="genresType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="item" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="runtimesType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="item"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="countriesType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="item" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="country-codesType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="item" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="language-codesType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="item" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="color-infoType">
+    <xs:sequence>
+      <xs:element name="item">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="notes" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="aspect-ratioType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="sound-mixType">
+    <xs:sequence>
+      <xs:element name="item" maxOccurs="unbounded" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="notes" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="budgetType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-united-statesType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="box-officeType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="budgetType" name="budget"/>
+      <xs:element type="opening-weekend-united-statesType" name="opening-weekend-united-states"/>
+      <xs:element type="opening-weekend-italyType" name="opening-weekend-italy"/>
+      <xs:element type="cumulative-worldwide-grossType" name="cumulative-worldwide-gross"/>
+      <xs:element type="opening-weekend-chinaType" name="opening-weekend-china"/>
+      <xs:element type="opening-weekend-united-kingdomType" name="opening-weekend-united-kingdom"/>
+      <xs:element type="opening-weekend-germanyType" name="opening-weekend-germany"/>
+      <xs:element type="opening-weekend-australiaType" name="opening-weekend-australia"/>
+      <xs:element type="opening-weekend-franceType" name="opening-weekend-france"/>
+      <xs:element type="opening-weekend-indiaType" name="opening-weekend-india"/>
+      <xs:element type="opening-weekend-spainType" name="opening-weekend-spain"/>
+      <xs:element type="opening-weekend-hong-kongType" name="opening-weekend-hong-kong"/>
+      <xs:element type="opening-weekend-brazilType" name="opening-weekend-brazil"/>
+      <xs:element type="opening-weekend-argentinaType" name="opening-weekend-argentina"/>
+      <xs:element type="opening-weekend-russiaType" name="opening-weekend-russia"/>
+      <xs:element type="opening-weekend-canadaType" name="opening-weekend-canada"/>
+      <xs:element type="opening-weekend-japanType" name="opening-weekend-japan"/>
+      <xs:element type="opening-weekend-pakistanType" name="opening-weekend-pakistan"/>
+      <xs:element type="opening-weekend-new-zealandType" name="opening-weekend-new-zealand"/>
+      <xs:element type="opening-weekend-mexicoType" name="opening-weekend-mexico"/>
+      <xs:element type="opening-weekend-south-koreaType" name="opening-weekend-south-korea"/>
+      <xs:element type="opening-weekend-denmarkType" name="opening-weekend-denmark"/>
+      <xs:element type="opening-weekend-czech-republicType" name="opening-weekend-czech-republic"/>
+      <xs:element type="opening-weekend-norwayType" name="opening-weekend-norway"/>
+      <xs:element type="opening-weekend-turkeyType" name="opening-weekend-turkey"/>
+      <xs:element type="opening-weekend-thailandType" name="opening-weekend-thailand"/>
+      <xs:element type="opening-weekend-netherlandsType" name="opening-weekend-netherlands"/>
+      <xs:element type="opening-weekend-south-africaType" name="opening-weekend-south-africa"/>
+      <xs:element type="opening-weekend-iranType" name="opening-weekend-iran"/>
+      <xs:element type="opening-weekend-dominican-republicType" name="opening-weekend-dominican-republic"/>
+      <xs:element type="opening-weekend-swedenType" name="opening-weekend-sweden"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="itemType" mixed="true">
+    <xs:sequence>
+      <xs:element type="xs:string" name="notes" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="certificatesType">
+    <xs:sequence>
+      <xs:element name="item" maxOccurs="unbounded" minOccurs="0">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="notes" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="original-air-dateType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ratingType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="votesType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="cover-urlType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="imdbidType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="plot-outlineType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="languagesType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="item" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="yearType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="kindType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="directorsType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="writersType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="producersType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="composersType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="cinematographersType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="editorsType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="casting-directorsType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="production-designersType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="art-directorsType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="set-decoratorsType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="costume-designersType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="production-managersType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="script-departmentType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="writerType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="directorType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="companyType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="name"/>
+      <xs:element type="xs:string" name="notes" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="production-companiesType">
+    <xs:sequence>
+      <xs:element type="companyType" name="company" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="distributorsType">
+    <xs:sequence>
+      <xs:element type="companyType" name="company" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="plotType">
+    <xs:sequence>
+      <xs:element type="itemType" name="item" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="synopsisType">
+    <xs:sequence>
+      <xs:element name="item">
+        <xs:complexType mixed="true">
+          <xs:sequence>
+            <xs:element type="xs:string" name="notes" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="movieType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="original-titleType" name="original-title"/>
+      <xs:element type="castType" name="cast"/>
+      <xs:element type="genresType" name="genres"/>
+      <xs:element type="runtimesType" name="runtimes"/>
+      <xs:element type="countriesType" name="countries"/>
+      <xs:element type="country-codesType" name="country-codes"/>
+      <xs:element type="language-codesType" name="language-codes"/>
+      <xs:element type="color-infoType" name="color-info"/>
+      <xs:element type="aspect-ratioType" name="aspect-ratio"/>
+      <xs:element type="sound-mixType" name="sound-mix"/>
+      <xs:element type="box-officeType" name="box-office"/>
+      <xs:element type="certificatesType" name="certificates"/>
+      <xs:element type="original-air-dateType" name="original-air-date"/>
+      <xs:element type="ratingType" name="rating"/>
+      <xs:element type="votesType" name="votes"/>
+      <xs:element type="cover-urlType" name="cover-url"/>
+      <xs:element type="imdbidType" name="imdbid"/>
+      <xs:element type="plot-outlineType" name="plot-outline"/>
+      <xs:element type="languagesType" name="languages"/>
+      <xs:element type="titleType" name="title"/>
+      <xs:element type="yearType" name="year"/>
+      <xs:element type="kindType" name="kind"/>
+      <xs:element type="directorsType" name="directors"/>
+      <xs:element type="writersType" name="writers"/>
+      <xs:element type="producersType" name="producers"/>
+      <xs:element type="composersType" name="composers"/>
+      <xs:element type="cinematographersType" name="cinematographers"/>
+      <xs:element type="editorsType" name="editors"/>
+      <xs:element type="casting-directorsType" name="casting-directors"/>
+      <xs:element type="production-designersType" name="production-designers"/>
+      <xs:element type="art-directorsType" name="art-directors"/>
+      <xs:element type="set-decoratorsType" name="set-decorators"/>
+      <xs:element type="costume-designersType" name="costume-designers"/>
+      <xs:element type="production-managersType" name="production-managers"/>
+      <xs:element type="script-departmentType" name="script-department"/>
+      <xs:element type="animation-departmentType" name="animation-department"/>
+      <xs:element type="writerType" name="writer"/>
+      <xs:element type="directorType" name="director"/>
+      <xs:element type="production-companiesType" name="production-companies"/>
+      <xs:element type="distributorsType" name="distributors"/>
+      <xs:element type="plotType" name="plot"/>
+      <xs:element type="synopsisType" name="synopsis"/>
+      <xs:element type="bottom-100-rankType" name="bottom-100-rank"/>
+      <xs:element type="top-250-rankType" name="top-250-rank"/>
+      <xs:element type="canonical-titleType" name="canonical-title"/>
+      <xs:element type="long-imdb-titleType" name="long-imdb-title"/>
+      <xs:element type="long-imdb-canonical-titleType" name="long-imdb-canonical-title"/>
+      <xs:element type="smart-canonical-titleType" name="smart-canonical-title"/>
+      <xs:element type="smart-long-imdb-canonical-titleType" name="smart-long-imdb-canonical-title"/>
+      <xs:element type="full-size-cover-urlType" name="full-size-cover-url"/>
+      <xs:element type="number-of-episodesType" name="number-of-episodes"/>
+      <xs:element type="next-episodeType" name="next-episode"/>
+      <xs:element type="seasonType" name="season"/>
+      <xs:element type="episodeType" name="episode"/>
+      <xs:element type="episode-ofType" name="episode-of"/>
+      <xs:element type="long-imdb-episode-titleType" name="long-imdb-episode-title"/>
+      <xs:element type="series-titleType" name="series-title"/>
+      <xs:element type="canonical-series-titleType" name="canonical-series-title"/>
+      <xs:element type="episode-titleType" name="episode-title"/>
+      <xs:element type="canonical-episode-titleType" name="canonical-episode-title"/>
+      <xs:element type="smart-canonical-series-titleType" name="smart-canonical-series-title"/>
+      <xs:element type="smart-canonical-episode-titleType" name="smart-canonical-episode-title"/>
+      <xs:element type="previous-episodeType" name="previous-episode"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="xs:string" name="access-system" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="cumulative-worldwide-grossType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-chinaType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="animation-departmentType">
+    <xs:sequence>
+      <xs:element type="personType" name="person" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="key" use="optional"/>
+    <xs:attribute type="xs:string" name="infoset" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-united-kingdomType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-italyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="bottom-100-rankType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="top-250-rankType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-germanyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-australiaType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-franceType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="canonical-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="long-imdb-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="long-imdb-canonical-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="smart-canonical-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="smart-long-imdb-canonical-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="full-size-cover-urlType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-indiaType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-spainType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-hong-kongType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-brazilType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-argentinaType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-russiaType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-canadaType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-japanType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-pakistanType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-new-zealandType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="number-of-episodesType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="next-episodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="seasonType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="episodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+        <xs:attribute type="xs:string" name="type" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="episode-ofType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="long-imdb-episode-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="series-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="canonical-series-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="episode-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="canonical-episode-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="smart-canonical-series-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="smart-canonical-episode-titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-mexicoType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-south-koreaType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-denmarkType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-czech-republicType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-norwayType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="previous-episodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+        <xs:attribute type="xs:string" name="infoset" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-turkeyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-thailandType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-netherlandsType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-south-africaType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-iranType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-dominican-republicType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="opening-weekend-swedenType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="key"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

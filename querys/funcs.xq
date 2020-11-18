@@ -1,6 +1,6 @@
 module namespace funcs = "funcs";
 
-declare function funcs:filmsOrderByYearPage($page, $n,$syear, $fyear, $categories) as element()*
+declare function funcs:filmsOrderByYearPage($search, $page, $n,$syear, $fyear, $categories) as element()*
 {
   <root>
   {
@@ -10,8 +10,10 @@ declare function funcs:filmsOrderByYearPage($page, $n,$syear, $fyear, $categorie
                 order by $film/year descending
                 where $film/year >= $syear and $film/year <= $fyear
                 for $genre in $film/genres//item
-                where contains($cat, data($genre)) 
+                where contains($cat, data($genre))
+                where contains(data($film/original-title), $search)
                 return $film
+
   let $count := count($films)
                 
   for $film in subsequence($films, $page*$n+1, $n)
@@ -37,7 +39,7 @@ declare function funcs:filmsOrderByYearPage($page, $n,$syear, $fyear, $categorie
   </root>
 };
 
-declare function funcs:filmsOrderByYearPage($page, $n, $categories) as element()*
+declare function funcs:filmsOrderByYearPage($search, $page, $n, $categories) as element()*
 {
    <root>
   {
@@ -47,6 +49,7 @@ declare function funcs:filmsOrderByYearPage($page, $n, $categories) as element()
                 order by $film/year  descending
                 for $genre in $film/genres//item
                 where contains($cat, data($genre)) 
+                where contains(data($film/original-title), $search)
                 return $film
   let $count := count($films)
 
@@ -73,7 +76,7 @@ declare function funcs:filmsOrderByYearPage($page, $n, $categories) as element()
   </root>
 };
 
-declare function funcs:filmsOrderByYearPage( $page, $n, $syear, $fyear) as element()*
+declare function funcs:filmsOrderByYearPage( $search, $page, $n, $syear, $fyear) as element()*
 {
   <root>
   {
@@ -81,6 +84,7 @@ declare function funcs:filmsOrderByYearPage( $page, $n, $syear, $fyear) as eleme
                 for $film in collection('Films')//movie
                 order by $film/year descending
                 where $film/year >= $syear and $film/year <= $fyear
+                where contains(data($film/original-title), $search)
                 return $film
   let $count := count($films)
                 
@@ -107,13 +111,16 @@ declare function funcs:filmsOrderByYearPage( $page, $n, $syear, $fyear) as eleme
   </root>
 };
 
-declare function funcs:filmsOrderByYearPage($page, $n) as element()*
+declare function funcs:filmsOrderByYearPage( $search, $page, $n) as element()*
 {
-   <root>
+  <root>
   {
-  let $films := for $film in collection('Films')//movie
-                order by $film/year descending
-                return $film
+    let $films :=
+            for $film in collection('Films')//movie
+            order by $film/year descending
+            where contains(data($film/original-title), $search)
+            where contains(data($film/original-title), $search)
+            return $film
   let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
   return 
@@ -145,7 +152,7 @@ declare function funcs:filmsOrderByYearPage($page, $n) as element()*
 
 
 
-declare function funcs:filmsOrderByAlfaPage($page, $n,$syear, $fyear, $categories) as element()*
+declare function funcs:filmsOrderByAlfaPage($search, $page, $n,$syear, $fyear, $categories) as element()*
 {
   <root>
   {
@@ -156,6 +163,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n,$syear, $fyear, $categorie
                 where $film/year >= $syear and $film/year <= $fyear
                 for $genre in $film/genres//item
                 where contains($cat, data($genre)) 
+                where contains(data($film/original-title), $search)
                 return $film
 
   let $count := count($films)
@@ -182,7 +190,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n,$syear, $fyear, $categorie
   </root>
 };
 
-declare function funcs:filmsOrderByAlfaPage($page, $n, $categories) as element()*
+declare function funcs:filmsOrderByAlfaPage($search, $page, $n, $categories) as element()*
 {
    <root>
   {
@@ -192,6 +200,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n, $categories) as element()
                 order by $film/original-title
                 for $genre in $film/genres//item
                 where contains($cat, data($genre)) 
+                where contains(data($film/original-title), $search)
                 return $film
   let $count := count($films)
                 
@@ -218,7 +227,7 @@ declare function funcs:filmsOrderByAlfaPage($page, $n, $categories) as element()
   </root>
 };
 
-declare function funcs:filmsOrderByAlfaPage( $page, $n, $syear, $fyear) as element()*
+declare function funcs:filmsOrderByAlfaPage( $search, $page, $n, $syear, $fyear) as element()*
 {
   <root>
   {
@@ -226,6 +235,7 @@ declare function funcs:filmsOrderByAlfaPage( $page, $n, $syear, $fyear) as eleme
                 for $film in collection('Films')//movie
                 order by $film/original-title
                 where $film/year >= $syear and $film/year <= $fyear
+                where contains(data($film/original-title), $search)
                 return $film
   let $count := count($films)
                 
@@ -252,12 +262,13 @@ declare function funcs:filmsOrderByAlfaPage( $page, $n, $syear, $fyear) as eleme
   </root>
 };
 
-declare function funcs:filmsOrderByAlfaPage($page, $n) as element()*
+declare function funcs:filmsOrderByAlfaPage($search, $page, $n) as element()*
 {
    <root>
   {
   let $films := for $film in collection('Films')//movie
                 order by $film/original-title
+                where contains(data($film/original-title), $search)
                 return $film
   let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
@@ -313,12 +324,25 @@ declare function funcs:getFilms() as element()*
 
 
 
+
 declare function funcs:getFilm($id) as element()
  {
    let $film := collection('Films')/movies/movie[@id=$id]
    return $film
    
  };
- 
+
+declare updating function funcs:newFilm($path, $id)
+{
+    if (collection('Films')//movie[@id=$id]) then ()
+
+    else (
+    let $films := collection('Films')/movies
+    let $new := doc($path)
+    return insert node $new as last into $films
+    )
+};
+
+
  
 
