@@ -20,6 +20,6 @@ from FilmVault import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('search/', views.searchpage, name='searchpage'),
-    path('search/results',views.filmsResults, name='searchpage'),
+    path('search/', views.film_results, name='film_results'),
+    path('search/<int:num_page>/', views.film_results, name='film_results'),
 ]

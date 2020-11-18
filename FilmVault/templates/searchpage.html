@@ -186,13 +186,11 @@
 
           </ul>
       </div>
-        <div id="nomeqq" >
+        <div id="list-films" >
             <hr>
             {% block content %}
-                <script>console.log("pilinhas")</script>
                 {% if dic %}
                     {% for movies in dic %}
-                            <script>console.log("pilinhas")</script>
                             <div class="film-card">
                                 <img class="image-card" src={{movies.cover}}/>
                                 <div class="content-card">
@@ -261,14 +259,54 @@
 <footer class="container-fluid text-center">
   <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+        {% if num_page|add:"-10" >= 1 %}
+            <a class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-10" }}" tabindex="-1">&lt&lt</a>
+        {% else %}
+            <a class="page-link" href="http://127.0.0.1:8000/search/1" tabindex="-1">&lt&lt</a>
+        {% endif %}
+    </li>
+    <li class="page-item">
+        {% if num_page|add:"-1" >= 1 %}
+            <a class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-1" }}" tabindex="-1">&lt</a>
+        {% else %}
+            <a class="page-link" href="#" tabindex="-1">&lt</a>
+        {% endif %}
+    </li>
+    {% if num_page != num_pages_total %}
+        {% if num_page != 1 %}
+            <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/search/1">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+        {% endif %}
+        {% for n in pages_inds %}
+            {% if n < num_pages_total %}
+                <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/search/{{ n }}">{{ n }}</a></li>
+            {% endif %}
+        {% endfor %}
+        <li class="page-item"><a class="page-link" href="#">...</a></li>
+        <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/search/{{ num_pages_total }}">{{ num_pages_total }}</a></li>
+    {% else %}
+        <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/search/1">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">...</a></li>
+        <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-4" }}">{{ num_page|add:"-4" }}</a></li>
+        <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-3" }}">{{ num_page|add:"-3" }}</a></li>
+        <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-2" }}">{{ num_page|add:"-2" }}</a></li>
+        <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-1" }}">{{ num_page|add:"-1" }}</a></li>
+        <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000/search/{{ num_page }}">{{ num_page }}</a></li>
+    {% endif %}
+    <li class="page-item">
+        {% if num_page|add:"1" <= num_pages_total %}
+            <a class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"1" }}">&gt</a>
+        {% else %}
+            <a class="page-link" href="#">&gt</a>
+        {% endif %}
+    </li>
+    <li class="page-item">
+        {% if num_page|add:"10" <= num_pages_total %}
+            <a class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"10" }}">&gt&gt</a>
+        {% else %}
+            <a class="page-link" href="http://127.0.0.1:8000/search/{{ num_pages_total }}">&gt&gt</a>
+        {% endif %}
     </li>
   </ul>
 </nav>
