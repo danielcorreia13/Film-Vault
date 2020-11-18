@@ -4,13 +4,15 @@ from imdb import IMDb
 from lxml import etree
 import os
 from BaseXClient import BaseXClient
+from django.conf import settings
+
 
 
 badTags = ["editorial-department","make-up-department","assistant-directors","art-department","sound-department","special-effects","visual-effects","stunts","camera-department","animation-department","casting-department","costume-departmen","location-management","music-department","script-department","transportation-department","miscellaneous","akas","special-effects-companies","other-companies"]
 
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = settings.BASE_DIR
 
 
 class UDF():
@@ -99,5 +101,6 @@ def validate(xml, schemaUrl):
     validatedXML = etree.fromstring(xml, parser)
 
 
-for mov in getFilmsSortedByYear(2, 100):
-    print(mov['title'])
+
+
+test()

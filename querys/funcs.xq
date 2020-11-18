@@ -25,7 +25,7 @@ declare function funcs:filmsOrderByYearPage($search, $page, $n,$syear, $fyear, $
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
-            subsequence( $film/cast//name , 0, 5)
+            subsequence( $film/cast//person/name , 0, 5)
           }
           </actors>
           <directors>{
@@ -62,7 +62,7 @@ declare function funcs:filmsOrderByYearPage($search, $page, $n, $categories) as 
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
-            subsequence( $film/cast//name , 0, 5)
+            subsequence( $film/cast//person/name , 0, 5)
           }
           </actors>
           <directors>{
@@ -97,7 +97,7 @@ declare function funcs:filmsOrderByYearPage( $search, $page, $n, $syear, $fyear)
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
-            subsequence( $film/cast//name , 0, 5)
+            subsequence( $film/cast//person/name , 0, 5)
           }
           </actors>
           <directors>{
@@ -131,7 +131,7 @@ declare function funcs:filmsOrderByYearPage( $search, $page, $n) as element()*
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
-            subsequence( $film/cast//name , 0, 5)
+            subsequence( $film/cast//person/name , 0, 5)
           }
           </actors>
           <directors>{
@@ -175,7 +175,7 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n,$syear, $fyear, $
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
-            subsequence( $film/cast//name , 0, 5)
+            subsequence( $film/cast//person/name , 0, 5)
           }
           </actors>
           <directors>{
@@ -212,7 +212,7 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n, $categories) as 
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
-            subsequence( $film/cast//name , 0, 5)
+            subsequence( $film/cast//person/name , 0, 5)
           }
           </actors>
           <directors>{
@@ -247,7 +247,7 @@ declare function funcs:filmsOrderByAlfaPage( $search, $page, $n, $syear, $fyear)
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
-            subsequence( $film/cast//name , 0, 5)
+            subsequence( $film/cast//person/name , 0, 5)
           }
           </actors>
           <directors>{
@@ -279,7 +279,7 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n) as element()*
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
-            subsequence( $film/cast//name , 0, 5)
+            subsequence( $film/cast//person/name , 0, 5)
           }
           </actors>
           <directors>{
@@ -307,7 +307,7 @@ declare function funcs:getFilms() as element()*
           <rating>{ data($film/rating) }</rating>
           <votes>{ data($film/votes) }</votes>
           <actors>{
-            subsequence( $film/cast//name , 0, 5)
+            subsequence( $film/cast//person/name , 0, 5)
           }
           </actors>
           <directors>{
