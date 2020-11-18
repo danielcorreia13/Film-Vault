@@ -1,4 +1,4 @@
-#!/home/daniel/Data/Universidade/EDC/pythonProject/Repo/Film-Vault/venv/bin/python
+#!/home/daniel/Data/Universidade/EDC/pythonProject/FilmVault/venv/bin/python
 # -*- coding: utf-8 -*-
 """
 search_character.py
