@@ -41,7 +41,7 @@ def executeQuery(funcSrt, pageIndex, n, syear = None, fyear = None, cat = '', se
         else:
 
             q = query.format(module_import, funcSrt.format(search, pageIndex, n, " "))
-    print(q)
+
     result = session.execute(q)
     dict = xmltodict.parse(result)
     if not dict['root']:
