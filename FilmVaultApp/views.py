@@ -68,6 +68,7 @@ def film_results(request, num_page=1):
         "Short": False,
         "News": False
     }
+
     dict_list = {}
 
     if not bool(dict_GET):                  # default query results
@@ -104,8 +105,12 @@ def film_results(request, num_page=1):
         else:
             dict_list = getFilmsSortedByYear(num_page, 4, min_year, max_year, genres, title_search)
 
-    num_results = int(dict_list[0]['count'])
-    num_pages_total = int(num_results / 4) + 1
+    if not dict_list:
+        num_results = 0
+        num_pages_total = 1
+    else:
+        num_results = int(dict_list[0]['count'])
+        num_pages_total = int(num_results / 4) + 1
 
     tparams = {
         "dic": dict_list,
@@ -114,7 +119,7 @@ def film_results(request, num_page=1):
         "pages_inds": range(num_page, num_page + 5),
         "genres": genres_state
     }
-    print(genres_state)
+    print(dict_list)
     return render(request, "searchpage.html", tparams)
 
 
