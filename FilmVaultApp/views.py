@@ -117,7 +117,8 @@ def film_results(request, num_page=1):
         "num_pages_total": num_pages_total,
         "num_page": num_page,
         "pages_inds": range(num_page, num_page + 5),
-        "genres": genres_state
+        "genres": genres_state,
+        "num_results": num_results
     }
     print(dict_list)
     return render(request, "searchpage.html", tparams)
