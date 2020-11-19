@@ -4,14 +4,15 @@ declare function funcs:filmsOrderByYearPage($search, $page, $n,$syear, $fyear, $
 {
   <root>
   {
-  let $cat := tokenize($categories, ' ')
+  let $cats := tokenize($categories, ' ')
   let $films := 
                 for $film in collection('Films')//movie
                 order by $film/year descending
                 where $film/year >= $syear and $film/year <= $fyear
                 for $genre in $film/genres//item
+                for $cat in $cats
                 where contains($cat, data($genre))
-                where contains(data($film/original-title), $search)
+                where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
 
   let $count := count($films)
@@ -33,7 +34,8 @@ declare function funcs:filmsOrderByYearPage($search, $page, $n,$syear, $fyear, $
         }
           </directors>
           <year>{ $film/year/text() }</year>
-          <genres>{ subsequence( $film/genres//item , 0, 3) }</genres>
+          <genres>{ subsequence( $film/genres//item , 0, 9) }</genres>
+                where contains($cat, data($genre))
          </elem>
   }
   </root>
@@ -43,13 +45,14 @@ declare function funcs:filmsOrderByYearPage($search, $page, $n, $categories) as 
 {
    <root>
   {
-  let $cat := tokenize($categories, ' ')
+  let $cats := tokenize($categories, ' ')
   let $films := 
                 for $film in collection('Films')//movie
                 order by $film/year  descending
                 for $genre in $film/genres//item
-                where contains($cat, data($genre)) 
-                where contains(data($film/original-title), $search)
+                for $cat in $cats
+                where $cat = data($genre)
+                where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
   let $count := count($films)
 
@@ -70,7 +73,8 @@ declare function funcs:filmsOrderByYearPage($search, $page, $n, $categories) as 
         }
           </directors>
           <year>{ $film/year/text() }</year>
-          <genres>{ subsequence( $film/genres//item , 0, 3) }</genres>
+          <genres>{ subsequence( $film/genres//item , 0, 9) }</genres>
+                where contains($cat, data($genre))
          </elem>
   }
   </root>
@@ -84,7 +88,7 @@ declare function funcs:filmsOrderByYearPage( $search, $page, $n, $syear, $fyear)
                 for $film in collection('Films')//movie
                 order by $film/year descending
                 where $film/year >= $syear and $film/year <= $fyear
-                where contains(data($film/original-title), $search)
+                where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
   let $count := count($films)
                 
@@ -105,7 +109,8 @@ declare function funcs:filmsOrderByYearPage( $search, $page, $n, $syear, $fyear)
         }
           </directors>
           <year>{ $film/year/text() }</year>
-          <genres>{ subsequence( $film/genres//item , 0, 3) }</genres>
+          <genres>{ subsequence( $film/genres//item , 0, 9) }</genres>
+                where contains($cat, data($genre))
          </elem>
   }
   </root>
@@ -118,7 +123,7 @@ declare function funcs:filmsOrderByYearPage( $search, $page, $n) as element()*
     let $films :=
             for $film in collection('Films')//movie
             order by $film/year descending
-            where contains(data($film/original-title), $search)
+            where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
             return $film
   let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
@@ -139,7 +144,8 @@ declare function funcs:filmsOrderByYearPage( $search, $page, $n) as element()*
         }
           </directors>
           <year>{ $film/year/text() }</year>
-          <genres>{ subsequence( $film/genres//item , 0, 3) }</genres>
+          <genres>{ subsequence( $film/genres//item , 0, 9) }</genres>
+                where contains($cat, data($genre))
          </elem>
   }
   </root>
@@ -155,14 +161,15 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n,$syear, $fyear, $
 {
   <root>
   {
-  let $cat := tokenize($categories, ' ')
+  let $cats := tokenize($categories, ' ')
   let $films := 
                 for $film in collection('Films')//movie
                 order by $film/original-title
                 where $film/year >= $syear and $film/year <= $fyear
                 for $genre in $film/genres//item
+                for $cat in $cats
                 where contains($cat, data($genre)) 
-                where contains(data($film/original-title), $search)
+                where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
 
   let $count := count($films)
@@ -183,7 +190,8 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n,$syear, $fyear, $
         }
           </directors>
           <year>{ $film/year/text() }</year>
-          <genres>{ subsequence( $film/genres//item , 0, 3) }</genres>
+          <genres>{ subsequence( $film/genres//item , 0, 9) }</genres>
+                where contains($cat, data($genre))
          </elem>
   }
   </root>
@@ -193,13 +201,14 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n, $categories) as 
 {
    <root>
   {
-  let $cat := tokenize($categories, ' ')
+  let $cats := tokenize($categories, ' ')
   let $films := 
                 for $film in collection('Films')//movie
                 order by $film/original-title
                 for $genre in $film/genres//item
+                for $cat in $cats
                 where contains($cat, data($genre)) 
-                where contains(data($film/original-title), $search)
+                where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
   let $count := count($films)
                 
@@ -220,7 +229,8 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n, $categories) as 
         }
           </directors>
           <year>{ $film/year/text() }</year>
-          <genres>{ subsequence( $film/genres//item , 0, 3) }</genres>
+          <genres>{ subsequence( $film/genres//item , 0, 9) }</genres>
+                where contains($cat, data($genre))
          </elem>
   }
   </root>
@@ -234,7 +244,7 @@ declare function funcs:filmsOrderByAlfaPage( $search, $page, $n, $syear, $fyear)
                 for $film in collection('Films')//movie
                 order by $film/original-title
                 where $film/year >= $syear and $film/year <= $fyear
-                where contains(data($film/original-title), $search)
+                where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
   let $count := count($films)
                 
@@ -255,7 +265,8 @@ declare function funcs:filmsOrderByAlfaPage( $search, $page, $n, $syear, $fyear)
         }
           </directors>
           <year>{ $film/year/text() }</year>
-          <genres>{ subsequence( $film/genres//item , 0, 3) }</genres>
+          <genres>{ subsequence( $film/genres//item , 0, 9) }</genres>
+                where contains($cat, data($genre))
          </elem>
   }
   </root>
@@ -267,7 +278,7 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n) as element()*
   {
   let $films := for $film in collection('Films')//movie
                 order by $film/original-title
-                where contains(data($film/original-title), $search)
+                where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
   let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
@@ -287,7 +298,8 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n) as element()*
         }
           </directors>
           <year>{ $film/year/text() }</year>
-          <genres>{ subsequence( $film/genres//item , 0, 3) }</genres>
+          <genres>{ subsequence( $film/genres//item , 0, 9) }</genres>
+                where contains($cat, data($genre))
          </elem>
   }
   </root>
@@ -315,7 +327,8 @@ declare function funcs:getFilms() as element()*
         }
           </directors>
           <year>{ $film/year/text() }</year>
-          <genres>{ subsequence( $film/genres//item , 0, 3) }</genres>
+          <genres>{ subsequence( $film/genres//item , 0, 9) }</genres>
+                where contains($cat, data($genre))
          </elem>
   }
   </root>
