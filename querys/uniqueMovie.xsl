@@ -20,15 +20,15 @@
 
                     <xsl:for-each select="cast/person">
                         <xsl:if test="position() &lt; $count1">
-                            <xsl:value-of select="name"/>
+                            <text style="font-size:24px;"><xsl:value-of select="name"/></text>
                             <xsl:if test="position() != 3">
                                 <xsl:text>,</xsl:text>
                             </xsl:if>
                         </xsl:if>
                     </xsl:for-each>
                 </h2>
-                <h2><b>Directors:</b> <xsl:for-each select="directors"> <xsl:value-of select="person/name" separator=","/></xsl:for-each> </h2>
-                <h2><b>Writers:</b> <xsl:for-each select="writers"> <xsl:value-of select="person/name" separator=","/></xsl:for-each> </h2>
+                <h2><b>Directors:</b>  <text style="font-size:24px;"><xsl:for-each select="directors"> <xsl:value-of select="person/name" separator=","/></xsl:for-each> </text></h2>
+                <h2><b>Writers:</b>  <text style="font-size:24px;"><xsl:for-each select="writers"> <xsl:value-of select="person/name" separator=","/></xsl:for-each></text> </h2>
                 <h3><b>Runtime :</b> <xsl:value-of select="runtimes/item"/> min</h3>
                 <h3><b>Genres:</b> <xsl:for-each select="genres"> <xsl:value-of select="item" separator=","/></xsl:for-each></h3>
                 <div class="last_div">
