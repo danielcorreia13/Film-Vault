@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from FilmVaultApp.models import *
 import xml.etree.ElementTree as ET
-import lxml.etree as LET #to use on xslt
+import lxml.etree as LET
+from lxml import etree
 import feedparser
 from FilmVaultApp.myLib.baseXquerys import getFilmsSortedByYear, getFilmXML, getFilmsSortedByAlfa
+from django.conf import settings
 
 # Create your views here.
 
@@ -43,4 +45,24 @@ def film_results(request, num_page=1):
     }
 
     return render(request, "searchpage.html", tparams)
+
+
+def singlefilm(request, id):
+
+    file = getFilmXML(id)
+    root = etree.fromstring(file)
+    film = root.find('original-title').text
+
+    xml_f = etree.parse(str(settings.BASE_DIR) + "/querys/uniqueMovie.xsl")
+    transform = etree.XSLT(xml_f)
+    result = transform(root)
+
+    print("cenas:" + str(result))
+
+    tparams={
+        'single_film': result,
+        'name': film,
+    }
+
+    return render(request,"film.html",tparams)
 

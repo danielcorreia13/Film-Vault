@@ -80,10 +80,15 @@
     }
 
     .image-card {
-        padding: 1.75%;
+        padding: 2.5%;
         left: 0;
         width: auto;
         height: 100%;
+    }
+
+    .content-card{
+        position: absolute;
+        left:16.5%;
     }
 
     .rating-card {
@@ -91,6 +96,7 @@
         top: 0%;
         right: 5%;
     }
+
   </style>
 </head>
 <body>
@@ -192,10 +198,13 @@
                 {% if dic %}
                     {% for movies in dic %}
                             <div class="film-card">
-                                <img class="image-card" src={{movies.cover}}/>
+                               <a href="http://127.0.0.1:8000/film/{{movies.id}}">
+                                    <img class="image-card" src={{movies.cover}}/>
+                               </a>
                                 <div class="content-card">
-                                    <h1>{{movies.title}}</h1>
-
+                                    <a href="http://127.0.0.1:8000/film/{{movies.id}}">
+                                        <h1>{{movies.title}}</h1>
+                                    </a>
 
                                     <br>
                                     <h4>&nbsp;{{movies.year}}</h4>
