@@ -42,7 +42,7 @@ def home(request):
 def film_results(request, num_page=1):
 
     dict_GET = request.GET
-    print(dict_GET)
+
 
     genres_state = {                        # create state of checkbox genres
         "Action": False,
@@ -89,7 +89,7 @@ def film_results(request, num_page=1):
                 genres += k +" "            # genres are passed in "g1 g2 g3 (...)" format
 
         genres = genres[:-1]
-        print(genres)
+
 
         if 'min_year' in dict_GET and 'max_year' in dict_GET:
             min_year = dict_GET['min_year']
@@ -128,7 +128,6 @@ def film_results(request, num_page=1):
         "genres": genres_state,
         "num_results": num_results
     }
-    print(dict_list)
     return render(request, "searchpage.html", tparams)
 
 
@@ -141,8 +140,6 @@ def singlefilm(request, id):
     xml_f = etree.parse(str(settings.BASE_DIR) + "/querys/uniqueMovie.xsl")
     transform = etree.XSLT(xml_f)
     result = transform(root)
-
-    print("cenas:" + str(result))
 
     tparams={
         'single_film': result,

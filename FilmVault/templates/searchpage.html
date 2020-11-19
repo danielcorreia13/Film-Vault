@@ -184,19 +184,14 @@
             ref = ref.concat(queryString)
             pages[i].setAttribute("href", ref)
         }
-        /*
-        var filterURL = window.location.search;
-        filterURL = filterURL.replaceAll("&?", "&")
-        filterURL = filterURL.replace("?sort=alfa_sort?", "&")
-        console.log(filterURL)
+
+        var filterURL = "&"+window.location.search.replace("?", "").replaceAll("sort=alfa_sort&", "").replaceAll("sort=recent_sort&", "");
         var items = document.getElementsByClassName("droplink");
         for(var i = 0; i < items.length; i++) {
             var ref = items[i].getAttribute("href")
-            console.log(ref)
             ref = ref.concat(filterURL)
-            console.log(ref)
             items[i].setAttribute("href", ref)
-*/
+        }
 
 
     </script>
