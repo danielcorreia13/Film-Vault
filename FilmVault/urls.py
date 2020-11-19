@@ -23,4 +23,7 @@ urlpatterns = [
     path('search/', views.film_results, name='film_results'),
     path('search/<int:num_page>/', views.film_results, name='film_results'),
     path('film/<int:id>', views.singlefilm, name="singlefilm"),
+    path("login/", views.loginView, name="login"),
+    path("adminPage/", views.adminPage, name="adminpage"),
+    path("logout", views.logoutView, name="logout")
 ]

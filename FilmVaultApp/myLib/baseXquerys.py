@@ -100,3 +100,8 @@ def validate(xml, schemaUrl):
 
     validatedXML = etree.fromstring(xml, parser)
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6e568418daec7208a616b56bb2d2ebfd66a564de
