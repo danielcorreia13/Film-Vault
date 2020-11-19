@@ -42,36 +42,35 @@ def home(request):
 def film_results(request, num_page=1):
     dict_GET = request.GET
     print(dict_GET)
-    genres_state = {}
+    genres_state = {                        # create state of checkbox genres
+        "Action": False,
+        "Comedy": False,
+        "Crime": False,
+        "Thriller": False,
+        "Horror": False,
+        "Musical": False,
+        "Romance": False,
+        "Biography": False,
+        "Drama": False,
+        "History": False,
+        "Animation": False,
+        "Adventure": False,
+        "Family": False,
+        "Fantasy": False,
+        "Sci-Fi": False,
+        "Western": False,
+        "Film-Noir": False,
+        "Mystery": False,
+        "Music": False,
+        "Sport": False,
+        "War": False,
+        "Documentary": False,
+        "Short": False,
+        "News": False
+    }
     dict_list = {}
 
-    if not bool(dict_GET):  # default query results
-        genres_state.update({  # create state of checkbox genres
-            "Action": False,
-            "Comedy": False,
-            "Crime": False,
-            "Thriller": False,
-            "Horror": False,
-            "Musical": False,
-            "Romance": False,
-            "Biography": False,
-            "Drama": False,
-            "History": False,
-            "Animation": False,
-            "Adventure": False,
-            "Family": False,
-            "Fantasy": False,
-            "Sci-Fi": False,
-            "Western": False,
-            "Film-Noir": False,
-            "Mystery": False,
-            "Music": False,
-            "Sport": False,
-            "War": False,
-            "Documentary": False,
-            "Short": False,
-            "News": False
-        })
+    if not bool(dict_GET):                  # default query results
         dict_list = getFilmsSortedByYear(num_page, 4)
 
     else:  # Filters received through GET
@@ -83,22 +82,27 @@ def film_results(request, num_page=1):
 
         for k in dict_GET:
             if k in genres_state:
-                print("updt")
-                print(k)
                 genres_state[k] = True
-                genres += k +" "  # genres are passed in "g1 g2 g3 (...)" format
+                genres += k +" "            # genres are passed in "g1 g2 g3 (...)" format
+
+        genres = genres[:-1]
+        print(genres)
 
         if 'min_year' in dict_GET and 'max_year' in dict_GET:
             min_year = dict_GET['min_year']
             max_year = dict_GET['max_year']
 
         if 'title_search' in dict_GET:
+            print(dict_GET['title_search'])
             title_search = dict_GET['title_search']
 
-        if 'alfa_sort' in dict_GET:
-            dict_list = getFilmsSortedByAlfa(num_page, 4, min_year, max_year, genres)
+        if 'sort' in dict_GET:
+            if dict_GET['sort'] == 'alfa_sort':
+                dict_list = getFilmsSortedByAlfa(num_page, 4, min_year, max_year, genres, title_search)
+            elif dict_GET['sort'] == 'recent_sort':
+                dict_list = getFilmsSortedByYear(num_page, 4, min_year, max_year, genres, title_search)
         else:
-            dict_list = getFilmsSortedByYear(num_page, 4, min_year, max_year, genres)
+            dict_list = getFilmsSortedByYear(num_page, 4, min_year, max_year, genres, title_search)
 
     num_results = int(dict_list[0]['count'])
     num_pages_total = int(num_results / 4) + 1
