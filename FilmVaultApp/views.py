@@ -3,13 +3,11 @@ from django.shortcuts import render
 from FilmVaultApp.models import *
 import xml.etree.ElementTree as ET
 import lxml.etree as LET
-<<<<<<< HEAD
+
 from lxml import etree
 import feedparser
 from FilmVaultApp.myLib.baseXquerys import getFilmsSortedByYear, getFilmXML, getFilmsSortedByAlfa
 from django.conf import settings
-=======
->>>>>>> 6e568418daec7208a616b56bb2d2ebfd66a564de
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -98,7 +96,6 @@ def film_results(request, num_page=1):
 
     return render(request, "searchpage.html", tparams)
 
-<<<<<<< HEAD
 
 def singlefilm(request, id):
 
@@ -119,7 +116,6 @@ def singlefilm(request, id):
 
     return render(request,"film.html",tparams)
 
-=======
 def logoutView(request):
     logout(request)
     return redirect("login")
@@ -169,4 +165,3 @@ def adminPage(request):
                       {
                           'error' : False
                       })
->>>>>>> 6e568418daec7208a616b56bb2d2ebfd66a564de
