@@ -100,8 +100,8 @@ def validate(xml, schemaUrl):
 
     validatedXML = etree.fromstring(xml, parser)
 
-
-for mov in getFilmsSortedByYear(1,10, search="song"):
-    print(mov['title'])
-    print(mov['genres'])
-    print("\n")
+#
+# for mov in getFilmsSortedByYear(1,10, search="song"):
+#     print(mov['title'])
+#     print(mov['genres'])
+#     print("\n")
