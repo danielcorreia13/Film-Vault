@@ -40,11 +40,13 @@ def home(request):
 
 
 def film_results(request, num_page=1):
-
+    dict_GET = request.GET
+    print(dict_GET)
     genres_state = {}
+    dict_list = {}
 
-    if not bool(request.GET):
-        genres_state.update({
+    if not bool(dict_GET):  # default query results
+        genres_state.update({  # create state of checkbox genres
             "Action": False,
             "Comedy": False,
             "Crime": False,
@@ -70,30 +72,45 @@ def film_results(request, num_page=1):
             "Short": False,
             "News": False
         })
-        if 'alfa' in request.GET:
-            dict_list = getFilmsSortedByAlfa(num_page, 4)
+        dict_list = getFilmsSortedByYear(num_page, 4)
+
+    else:  # Filters received through GET
+
+        genres = ""
+        min_year = None
+        max_year = None
+        title_search = ""
+
+        for k in dict_GET:
+            if k in genres_state:
+                print("updt")
+                print(k)
+                genres_state[k] = True
+                genres += k +" "  # genres are passed in "g1 g2 g3 (...)" format
+
+        if 'min_year' in dict_GET and 'max_year' in dict_GET:
+            min_year = dict_GET['min_year']
+            max_year = dict_GET['max_year']
+
+        if 'title_search' in dict_GET:
+            title_search = dict_GET['title_search']
+
+        if 'alfa_sort' in dict_GET:
+            dict_list = getFilmsSortedByAlfa(num_page, 4, min_year, max_year, genres)
         else:
-            dict_list = getFilmsSortedByYear(num_page, 4)
+            dict_list = getFilmsSortedByYear(num_page, 4, min_year, max_year, genres)
 
-    else:
-        for k, v in request.GET:
-            genres_state[k] = True
-
-
-
-
-    dict_list = getFilmsSortedByYear(num_page, 4)
     num_results = int(dict_list[0]['count'])
-    num_pages_total = int(num_results/4)+1
+    num_pages_total = int(num_results / 4) + 1
 
-    tparams= {
+    tparams = {
         "dic": dict_list,
         "num_pages_total": num_pages_total,
         "num_page": num_page,
-        "pages_inds": range(num_page, num_page+5),
-        "genres": ["Action", "Comedy", "Crime", "Thriller", "Horror", "Musical", "Romance", "Biography", "Drama", "History", "Animation", "Adventure", "Family", "Fantasy", "Sci-Fi", "Western", "Film-Noir", "Mystery", "Music", "Sport", "War", "Documentary", "Short", "News"],
+        "pages_inds": range(num_page, num_page + 5),
+        "genres": genres_state
     }
-
+    print(genres_state)
     return render(request, "searchpage.html", tparams)
 
 

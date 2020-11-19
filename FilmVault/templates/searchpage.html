@@ -11,8 +11,12 @@
                     Genre
                 </div>
             </div>
-            {% for g in genres %}
-                <input type="checkbox" id="cb" name="{{ g }}" value="True">
+            {% for g, s in genres.items %}
+                {% if s %}
+                    <input type="checkbox" id="cb" name="{{ g }}" value="True" checked>
+                {% else %}
+                    <input type="checkbox" id="cb" name="{{ g }}" value="True">
+                {% endif %}
                 <label for="cb"> {{ g }}</label><br>
             {% endfor %}
 
