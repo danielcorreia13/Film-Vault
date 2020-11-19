@@ -17,101 +17,118 @@
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
 
-    .d1{
-        position: relative;
-        top: 10px;
-        left: 45%;
-    }
+        .d1{
+            position: relative;
+            top: 10px;
+            left: 45%;
+        }
 
-    .md1{
-        height: 1080px;
-        width: 1920px;
-    }
+        .md1{
+            height: 1080px;
+            width: 1920px;
+        }
 
-    .scrollable-menu {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
-}
+        .scrollable-menu {
+            height: auto;
+            max-height: 200px;
+            overflow-x: hidden;
+        }
 
-    .navbar {
-      padding: 1%;
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    .navbar-nav.navbar-center{
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%) ;
-        top: 30%;
-    }
+        .navbar {
+          padding: 1%;
+          margin-bottom: 0;
+          border-radius: 0;
+        }
+        .navbar-nav.navbar-center{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) ;
+            top: 30%;
+        }
 
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 804px;}
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {height: 804px;}
 
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
+        /* Set gray background color and 100% height */
+        .sidenav {
+          padding-top: 20px;
+          background-color: #f1f1f1;
+          height: 100%;
+        }
 
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: silver;
-      color: white;
-     padding: 15px;
-    }
+        /* Set black background color, white text and some padding */
+        footer {
+          background-color: silver;
+          color: white;
+         padding: 15px;
+        }
 
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
-    }
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+          .sidenav {
+            height: auto;
+            padding: 15px;
+          }
+          .row.content {height:auto;}
+        }
 
-    .film-card {
-        position: relative;
-        width: inherit;
-        height: 250px;
-        display: flex;
-    }
+        .film-card {
+            position: relative;
+            width: inherit;
+            height: 250px;
+            display: flex;
 
-    .image-card {
-        padding: 1.75%;
-        left: 0;
-        width: auto;
-        height: 100%;
-    }
+        }
 
-    .rating-card {
-        position: absolute;
-        top: 0%;
-        right: 5%;
-    }
+        .image-card {
+            padding: 1.75%;
+            left: 0;
+            width: auto;
+            height: 100%;
+        }
 
-    .content-card{
-        position: absolute;
-        left:16%
-    }
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: separate;
-        width: 100%;
+        .image-card_1 {
 
-    }
+            left: 0;
+            width: auto;
+            height: 300px;
+        }
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: center;
-        padding: 8px;
-    }
+        .rating-card {
+            position: absolute;
+            top: 0%;
+            right: 5%;
+            text-align: right;
+        }
 
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
+        .rating-card_1 {
+            position: absolute;
+
+            right: 18%;
+        }
+
+        .content-card{
+            position: absolute;
+            left:16%
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: separate;
+            width: 100%;
+
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+
 
   </style>
 </head>

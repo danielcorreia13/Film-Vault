@@ -3,19 +3,35 @@
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="movie">
-        <h1><xsl:value-of select="original-title"/></h1>
-        <img class="img_film">
-            <xsl:attribute name="src">
-                <xsl:value-of select="cover-url"/>
-            </xsl:attribute>
-        </img>
-        <div class="rating">
-            <h5>Rating: <xsl:value-of select="rating"/>/10</h5>
-            <h6>Number of votes: <xsl:value-of select="votes"/> </h6>
+        <h1 style="text-align: center;padding-top:2%;"><b><xsl:value-of select="original-title"/></b></h1>
+        <div class="film-card" style="padding-top: 3%;">
+            <img class="image-card_1" style="padding-left:17.5%">
+                <xsl:attribute name="src">
+                    <xsl:value-of select="cover-url"/>
+                </xsl:attribute>
+            </img>
+            <div class="rating-card_1" >
+                <h1> <xsl:value-of select="rating"/>/10</h1>
+                <h6>Number of votes: <xsl:value-of select="votes"/> </h6>
+            </div>
+            <div style="padding-left:3%;">
+                <h2><b>Directors:</b> <xsl:for-each select="directors"> <xsl:value-of select="person/name" separator=","/></xsl:for-each> </h2>
+                <h2><b>Writers:</b> <xsl:for-each select="writers"> <xsl:value-of select="person/name" separator=","/></xsl:for-each> </h2>
+                <h3><b>Runtime :</b> <xsl:value-of select="runtimes/item"/> min</h3>
+                <h3><b>Genres:</b> <xsl:for-each select="genres"> <xsl:value-of select="item" separator=","/></xsl:for-each></h3>
+                <div class="last_div">
+                    <h4><b>Original Air Date: </b><xsl:value-of select="original-air-date"/></h4>
+                    <h4><b>Languages: </b><xsl:value-of select="languages" /></h4>
+                </div>
+            </div>
         </div>
 
+
+
+
+        <div class="col-sm-8 " style="left:16.5%; padding-bottom:2%;">
             <xsl:variable name="count" select="11"/>
-            <table>
+            <table style="padding-top: 15%;">
                 <tr>
                     <th>Actor</th>
                     <th>Characters</th>
@@ -29,16 +45,15 @@
                     </xsl:if>
                 </xsl:for-each>
             </table>
-
-        <h4>Directors: <xsl:for-each select="directors"> <xsl:value-of select="person/name" separator=","/></xsl:for-each> </h4>
-        <h4>Writers: <xsl:for-each select="writers"> <xsl:value-of select="person/name" separator=","/></xsl:for-each> </h4>
-        <h5>Runtime : <xsl:value-of select="runtimes/item"/> min</h5>
-        <h5>Genres: <xsl:for-each select="genres"> <xsl:value-of select="item" separator=","/></xsl:for-each></h5>
-        <h5>Original Air Date: <xsl:value-of select="original-air-date"/></h5>
-        <h6>Languages: <xsl:value-of select="languages" /></h6>
-        <h6>Plot: <xsl:value-of select="plot-outline"/></h6>
-        <h7>Synopsis: <xsl:value-of select="synopsis/item"/></h7>
-
+        </div>
+        <div class="col-sm-8 " style="left:16.5%;">
+            <xsl:if test="plot-outline != ''">
+                <h4><b>Plot:</b><p> <xsl:value-of select="plot-outline"/></p></h4>
+            </xsl:if>
+            <xsl:if test="plot//item != ''">
+                <h4><b>Synopsis:</b> <p><xsl:value-of select="plot//item"/></p></h4>
+            </xsl:if>
+        </div>
     </xsl:template>
 
 </xsl:stylesheet>
