@@ -2,7 +2,6 @@
 
 
 {% block content %}
-
 <div class="container-fluid  text-left">
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -127,56 +126,67 @@
   <ul class="pagination justify-content-center">
     <li class="page-item">
         {% if num_page|add:"-10" >= 1 %}
-            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-10" }}" tabindex="-1">&lt&lt</a>
+            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-10" }}{{ filters }}" tabindex="-1">&lt&lt</a>
         {% else %}
-            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/1" tabindex="-1">&lt&lt</a>
+            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/1{{ filters }}" tabindex="-1">&lt&lt</a>
         {% endif %}
     </li>
     <li class="page-item">
         {% if num_page|add:"-1" >= 1 %}
-            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-1" }}" tabindex="-1">&lt</a>
+            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-1" }}{{ filters }}" tabindex="-1">&lt</a>
         {% else %}
-            <a id="pagination_item" class="page-link" href="#" tabindex="-1">&lt</a>
+            <a id="pagination_item" class="page-link" href="{{ filters }}" tabindex="-1">&lt</a>
         {% endif %}
     </li>
     {% if num_page != num_pages_total %}
         {% if num_page != 1 %}
-            <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/1">1</a></li>
-            <li class="page-item"><a id="pagination_item" class="page-link" href="#">...</a></li>
+            <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/1{{ filters }}">1</a></li>
+            <li class="page-item"><a id="pagination_item" class="page-link" href="{{ filters }}">...</a></li>
         {% endif %}
         {% for n in pages_inds %}
             {% if n < num_pages_total %}
-                <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ n }}">{{ n }}</a></li>
+                <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ n }}{{ filters }}">{{ n }}</a></li>
             {% endif %}
         {% endfor %}
-        <li class="page-item"><a id="pagination_item" class="page-link" href="#">...</a></li>
-        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_pages_total }}">{{ num_pages_total }}</a></li>
+        <li class="page-item"><a id="pagination_item" class="page-link" href="{{ filters }}">...</a></li>
+        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_pages_total }}{{ filters }}">{{ num_pages_total }}</a></li>
     {% else %}
-        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/1">1</a></li>
+        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/1"{{ filters }}>1</a></li>
         <li class="page-item"><a id="pagination_item" class="page-link" href="#">...</a></li>
-        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-4" }}">{{ num_page|add:"-4" }}</a></li>
-        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-3" }}">{{ num_page|add:"-3" }}</a></li>
-        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-2" }}">{{ num_page|add:"-2" }}</a></li>
-        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-1" }}">{{ num_page|add:"-1" }}</a></li>
-        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page }}">{{ num_page }}</a></li>
+        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-4" }}{{ filters }}">{{ num_page|add:"-4" }}</a></li>
+        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-3" }}{{ filters }}">{{ num_page|add:"-3" }}</a></li>
+        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-2" }}{{ filters }}">{{ num_page|add:"-2" }}</a></li>
+        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"-1" }}{{ filters }}">{{ num_page|add:"-1" }}</a></li>
+        <li class="page-item"><a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page }}{{ filters }}">{{ num_page }}</a></li>
     {% endif %}
     <li class="page-item">
         {% if num_page|add:"1" <= num_pages_total %}
-            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"1" }}">&gt</a>
+            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"1" }}{{ filters }}">&gt</a>
         {% else %}
-            <a id="pagination_item" class="page-link" href="#">&gt</a>
+            <a id="pagination_item" class="page-link" href="{{ filters }}">&gt</a>
         {% endif %}
     </li>
     <li class="page-item">
         {% if num_page|add:"10" <= num_pages_total %}
-            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"10" }}">&gt&gt</a>
+            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_page|add:"10" }}{{ filters }}">&gt&gt</a>
         {% else %}
-            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_pages_total }}">&gt&gt</a>
+            <a id="pagination_item" class="page-link" href="http://127.0.0.1:8000/search/{{ num_pages_total }}{{ filters }}">&gt&gt</a>
         {% endif %}
     </li>
   </ul>
 </nav>
 </footer>
+    <script>
+        var queryString = "/"+window.location.search;
+        var pages = document.getElementsByClassName("page-link");
+        console.log(pages)
+        for(var i = 0; i < pages.length; i++) {
+            var ref = pages[i].getAttribute("href")
+            ref = ref.concat(queryString)
+            pages[i].setAttribute("href", ref)
+        }
+
+    </script>
 </body>
 </html>
 
