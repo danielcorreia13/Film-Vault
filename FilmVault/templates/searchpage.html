@@ -27,10 +27,10 @@
             </div>
 
                <p class="text-justify">From:</p>
-                <input type="range" name="min_year" min="1950" max="2020" value="{{ min_year }}" oninput="this.nextElementSibling.value = this.value" onchange = "document.getElementById('to').min=this.value;" id="from">
+                <input type="range" name="min_year" min="{{ default_min_year }}" max="{{ default_max_year }}" value="{{ min_year }}" oninput="this.nextElementSibling.value = this.value" onchange = "document.getElementById('to').min=this.value;" id="from">
                 <output>{{ min_year }}</output>
                 <p class="text-justify">To:</p>
-                <input type="range" name="max_year" min={{ min_year }} max="2020" value={{ max_year }} value="document.getElementById('from').value"  oninput="this.nextElementSibling.value = this.value" id="to">
+                <input type="range" name="max_year" min={{ min_year }} max="{{ default_max_year }}" value={{ max_year }} value="document.getElementById('from').value"  oninput="this.nextElementSibling.value = this.value" id="to">
                 <output>{{ max_year }}</output>
             <button id="apply" name="apply" value="False" type="submit" class="btn btn-dark" style="right: 4%; position: absolute; ">Apply</button>
         </form>

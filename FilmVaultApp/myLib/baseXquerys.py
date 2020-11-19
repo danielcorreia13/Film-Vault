@@ -8,7 +8,7 @@ from django.conf import settings
 
 
 
-badTags = ["editorial-department","make-up-department","assistant-directors","art-department","sound-department","special-effects","visual-effects","stunts","camera-department","animation-department","casting-department","costume-departmen","location-management","music-department","script-department","transportation-department","miscellaneous","akas","special-effects-companies","other-companies"]
+badTags = ["production-department", "thanks", "editorial-department","make-up-department","assistant-directors","art-department","sound-department","special-effects","visual-effects","stunts","camera-department","animation-department","casting-department","costume-departmen","location-management","music-department","script-department","transportation-department","miscellaneous","akas","special-effects-companies","other-companies"]
 
 
 

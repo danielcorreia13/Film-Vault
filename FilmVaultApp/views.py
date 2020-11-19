@@ -39,14 +39,14 @@ def home(request):
     return render(request, "homepage.html", tparams)
 
 prev_dict = None
+default_min_year = 1900
+default_max_year = 2020
 
 def film_results(request, num_page=1):
     global prev_dict
     dict_GET = request.GET
-    print(prev_dict)
-    print(dict_GET)
+
     if dict_GET != prev_dict and prev_dict:
-        print("BACK TO 1")
         num_page = 1
 
     prev_dict = dict_GET
@@ -78,8 +78,8 @@ def film_results(request, num_page=1):
         "News": False
     }
 
-    min_year = 1950
-    max_year = 2020
+    min_year = default_min_year
+    max_year = default_max_year
 
     dict_list = {}
 
@@ -136,7 +136,9 @@ def film_results(request, num_page=1):
         "genres": genres_state,
         "num_results": num_results,
         "min_year": min_year,
-        "max_year": max_year
+        "max_year": max_year,
+        "default_min_year": default_min_year,
+        "default_max_year": default_max_year
     }
     return render(request, "searchpage.html", tparams)
 
