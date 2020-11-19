@@ -1,5 +1,5 @@
 {% extends "basehtml.html" %}
-
+{% load costum %}
 
 {% block content %}
 
@@ -72,9 +72,13 @@
                                     <h4>&nbsp;{{movies.year}}</h4>
                                     <h4>
                                       <h4>{% if movies.genres.items %} | {%  endif %}
-                                    {% for i in movies.genres.item %}
-                                        {{i}} |
-                                    {% endfor %}
+                                      {% if movies.genres.item|isList %}
+                                            {% for i in movies.genres.item %}
+                                                {{i}} |
+                                            {% endfor %}
+                                      {% else %}
+                                        {{movies.genres.item}} |
+                                      {%  endif %}
 
                                     </h4>
                                     <h4>{% if movies.actors.items %} | {%  endif %}

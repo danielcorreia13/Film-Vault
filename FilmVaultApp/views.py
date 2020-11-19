@@ -4,6 +4,7 @@ from FilmVaultApp.models import *
 import xml.etree.ElementTree as ET
 import lxml.etree as LET
 
+
 from lxml import etree
 import feedparser
 from FilmVaultApp.myLib.baseXquerys import getFilmsSortedByYear, getFilmXML, getFilmsSortedByAlfa
@@ -15,7 +16,6 @@ from django.shortcuts import render, redirect
 import feedparser
 from FilmVaultApp.myLib.baseXquerys import getFilmsSortedByYear, getFilmXML, getFilmsSortedByAlfa, newFilm
 from django.contrib.auth import authenticate, login, logout
-# Create your views here.
 
 
 def home(request):
