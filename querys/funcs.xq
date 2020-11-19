@@ -1,11 +1,12 @@
 module namespace funcs = "funcs";
+import module namespace functx = "http://www.functx.com";
 
 declare function funcs:filmsOrderByYearPage($search, $page, $n,$syear, $fyear, $categories) as element()*
 {
   <root>
   {
   let $cats := tokenize($categories, ' ')
-  let $films := 
+  let $films := functx:distinct-nodes( 
                 for $film in collection('Films')//movie
                 order by $film/year descending
                 where $film/year >= $syear and $film/year <= $fyear
@@ -14,9 +15,10 @@ declare function funcs:filmsOrderByYearPage($search, $page, $n,$syear, $fyear, $
                 where contains($cat, data($genre))
                 where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
+                )
 
   let $count := count($films)
-                
+
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
           <count>{ $count }</count>
@@ -46,7 +48,7 @@ declare function funcs:filmsOrderByYearPage($search, $page, $n, $categories) as 
    <root>
   {
   let $cats := tokenize($categories, ' ')
-  let $films := 
+  let $films := functx:distinct-nodes( 
                 for $film in collection('Films')//movie
                 order by $film/year  descending
                 for $genre in $film/genres//item
@@ -54,6 +56,7 @@ declare function funcs:filmsOrderByYearPage($search, $page, $n, $categories) as 
                 where $cat = data($genre)
                 where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
+                )
   let $count := count($films)
 
   for $film in subsequence($films, $page*$n+1, $n)
@@ -84,14 +87,15 @@ declare function funcs:filmsOrderByYearPage( $search, $page, $n, $syear, $fyear)
 {
   <root>
   {
-  let $films := 
+  let $films := functx:distinct-nodes( 
                 for $film in collection('Films')//movie
                 order by $film/year descending
                 where $film/year >= $syear and $film/year <= $fyear
                 where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
+                )
   let $count := count($films)
-                
+
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
           <count>{ $count }</count>
@@ -120,14 +124,15 @@ declare function funcs:filmsOrderByYearPage( $search, $page, $n) as element()*
 {
   <root>
   {
-    let $films :=
+    let $films := functx:distinct-nodes( 
             for $film in collection('Films')//movie
             order by $film/year descending
             where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
             return $film
+                )
   let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
-  return 
+  return
          <elem>
           <count>{ $count }</count>
           <id>{ data($film/imdbid) }</id>
@@ -162,15 +167,16 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n,$syear, $fyear, $
   <root>
   {
   let $cats := tokenize($categories, ' ')
-  let $films := 
+  let $films := functx:distinct-nodes( 
                 for $film in collection('Films')//movie
                 order by $film/original-title
                 where $film/year >= $syear and $film/year <= $fyear
                 for $genre in $film/genres//item
                 for $cat in $cats
-                where contains($cat, data($genre)) 
+                where contains($cat, data($genre))
                 where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
+                )
 
   let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
@@ -202,16 +208,17 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n, $categories) as 
    <root>
   {
   let $cats := tokenize($categories, ' ')
-  let $films := 
+  let $films := functx:distinct-nodes( 
                 for $film in collection('Films')//movie
                 order by $film/original-title
                 for $genre in $film/genres//item
                 for $cat in $cats
-                where contains($cat, data($genre)) 
+                where contains($cat, data($genre))
                 where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
+                )
   let $count := count($films)
-                
+
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
           <count>{ $count }</count>
@@ -240,14 +247,15 @@ declare function funcs:filmsOrderByAlfaPage( $search, $page, $n, $syear, $fyear)
 {
   <root>
   {
-  let $films := 
+  let $films := functx:distinct-nodes( 
                 for $film in collection('Films')//movie
                 order by $film/original-title
                 where $film/year >= $syear and $film/year <= $fyear
                 where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
+                )
   let $count := count($films)
-                
+
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
           <count>{ $count }</count>
@@ -276,10 +284,12 @@ declare function funcs:filmsOrderByAlfaPage($search, $page, $n) as element()*
 {
    <root>
   {
-  let $films := for $film in collection('Films')//movie
+  let $films := functx:distinct-nodes(
+                for $film in collection('Films')//movie
                 order by $film/original-title
                 where contains(fn:lower-case(data($film/original-title)), fn:lower-case($search))
                 return $film
+                )
   let $count := count($films)
   for $film in subsequence($films, $page*$n+1, $n)
   return <elem>
