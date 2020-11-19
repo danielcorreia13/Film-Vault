@@ -1,145 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>FilmVault</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://code.jquery.com/jquery-migrate-3.3.1.min.js"
-          integrity="sha256-APllMc0V4lf/Rb5Cz4idWUCYlBDG3b0EcN1Ushd3hpE="
-          crossorigin="anonymous"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+{% extends "basehtml.html" %}
 
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
 
-    .d1{
-        position: relative;
-        top: 10px;
-        left: 45%;
-    }
-
-    .md1{
-        height: 1080px;
-        width: 1920px;
-    }
-
-    .scrollable-menu {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
-}
-
-    .navbar {
-      padding: 1%;
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    .navbar-nav.navbar-center{
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%) ;
-        top: 30%;
-    }
-
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 804px;}
-
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: silver;
-      color: white;
-     padding: 15px;
-    }
-
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
-    }
-
-    .film-card {
-        position: relative;
-        width: inherit;
-        height: 250px;
-        display: flex;
-    }
-
-    .image-card {
-        padding: 1.75%;
-        left: 0;
-        width: auto;
-        height: 100%;
-    }
-
-    .rating-card {
-        position: absolute;
-        top: 0%;
-        right: 5%;
-    }
-  </style>
-</head>
-<body>
-
-<nav class="navbar navbar-inverse"  style="z-index: 10;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="http://127.0.0.1:8000/">FilmVault</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class ="nav navbar-nav navbar-center">
-          <li>
-              <div class="col-xs-13 ">
-		    <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#contains">Contains</a></li>
-                      <li><a href="#its_equal">It's equal</a></li>
-                      <li><a href="#greather_than">Greather than ></a></li>
-                      <li><a href="#less_than">Less than < </a></li>
-                      <li class="divider"></li>
-                      <li><a href="#all">Anything</a></li>
-                    </ul>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-            </div>
-        </div>
-          </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
+{% block content %}
 <div class="container-fluid  text-left">
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -185,7 +47,7 @@
       </div>
         <div id="list-films" >
             <hr>
-            {% block content %}
+
                 {% if dic %}
                     {% for movies in dic %}
                             <div class="film-card">
@@ -238,7 +100,7 @@
                     <p>not</p>
                 {% endif %}
 
-            {% endblock %}
+
         </div>
 
     </div>
@@ -310,3 +172,5 @@
 </footer>
 </body>
 </html>
+
+{% endblock %}
