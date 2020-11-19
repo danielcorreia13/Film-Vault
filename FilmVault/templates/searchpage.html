@@ -27,12 +27,12 @@
             </div>
 
                <p class="text-justify">From:</p>
-                <input type="range" name="min_year" min="1950" max="2020" value="1950" oninput="this.nextElementSibling.value = this.value" onchange = "document.getElementById('to').min=this.value;" id="from">
-                <output>1950</output>
+                <input type="range" name="min_year" min="1950" max="2020" value="{{ min_year }}" oninput="this.nextElementSibling.value = this.value" onchange = "document.getElementById('to').min=this.value;" id="from">
+                <output>{{ min_year }}</output>
                 <p class="text-justify">To:</p>
-                <input type="range" name="max_year" min="1950"  min = "document.getElementById('from').value" max="2020" value="2020" value="document.getElementById('from').value"  oninput="this.nextElementSibling.value = this.value" id="to">
-                <output>2020</output>
-            <input type="submit" class="btn btn-dark" value="Apply" style="right: 4%; position: absolute; "/>
+                <input type="range" name="max_year" min={{ min_year }} max="2020" value={{ max_year }} value="document.getElementById('from').value"  oninput="this.nextElementSibling.value = this.value" id="to">
+                <output>{{ max_year }}</output>
+            <button id="apply" name="apply" value="False" type="submit" class="btn btn-dark" style="right: 4%; position: absolute; ">Apply</button>
         </form>
     </div>
     <div class="col-sm-8 text-left">
@@ -42,12 +42,17 @@
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sort by:
           </button>
-            <h4 class="rating-card">{{ num_results }} results</h4>
+
+
           <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
             <a href="/search/?sort=alfa_sort" class="droplink"><li class="dropdown-item">Alphabetic</li></a>
               <a href="/search/?sort=recent_sort" class="droplink"><li class="dropdown-item" href="/?sort=recent_sort">Most recent</li></a>
           </ul>
+            <h4 class="rating-card">{{ num_results }} results</h4>
+
         </div>
+
+        <div><h5>Page {{ num_page }}/{{ num_pages_total }}</h5></div>
         
         <div id="list-films" >
             <hr>
@@ -192,7 +197,6 @@
             ref = ref.concat(filterURL)
             items[i].setAttribute("href", ref)
         }
-
 
     </script>
 </body>

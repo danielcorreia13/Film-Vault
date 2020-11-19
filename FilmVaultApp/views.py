@@ -38,11 +38,18 @@ def home(request):
 
     return render(request, "homepage.html", tparams)
 
+prev_dict = None
 
 def film_results(request, num_page=1):
-
+    global prev_dict
     dict_GET = request.GET
+    print(prev_dict)
+    print(dict_GET)
+    if dict_GET != prev_dict and prev_dict:
+        print("BACK TO 1")
+        num_page = 1
 
+    prev_dict = dict_GET
 
     genres_state = {                        # create state of checkbox genres
         "Action": False,
@@ -71,6 +78,9 @@ def film_results(request, num_page=1):
         "News": False
     }
 
+    min_year = 1950
+    max_year = 2020
+
     dict_list = {}
 
     if not bool(dict_GET):                  # default query results
@@ -79,8 +89,6 @@ def film_results(request, num_page=1):
     else:  # Filters received through GET
 
         genres = ""
-        min_year = None
-        max_year = None
         title_search = ""
 
         for k in dict_GET:
@@ -126,7 +134,9 @@ def film_results(request, num_page=1):
         "num_page": num_page,
         "pages_inds": range(num_page, num_page + 5),
         "genres": genres_state,
-        "num_results": num_results
+        "num_results": num_results,
+        "min_year": min_year,
+        "max_year": max_year
     }
     return render(request, "searchpage.html", tparams)
 
