@@ -46,7 +46,11 @@ def executeQuery(funcSrt, pageIndex, n, syear = None, fyear = None, cat = '', se
     dict = xmltodict.parse(result)
     if not dict['root']:
         return None
-    return [movie for movie in dict['root']['elem']]
+
+    if isinstance(dict['root']['elem'], list):
+        return [movie for movie in dict['root']['elem']]
+    else:
+        return [dict['root']['elem']]
 
 def getFilmsSortedByYear(pageIndex, n, syear = None, fyear = None, cat = '', search = ""):
     return executeQuery(UDF.filmsByYear, pageIndex, n, syear, fyear, cat, search)

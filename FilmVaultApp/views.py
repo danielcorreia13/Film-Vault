@@ -40,8 +40,10 @@ def home(request):
 
 
 def film_results(request, num_page=1):
+
     dict_GET = request.GET
     print(dict_GET)
+
     genres_state = {                        # create state of checkbox genres
         "Action": False,
         "Comedy": False,
@@ -109,8 +111,14 @@ def film_results(request, num_page=1):
         num_results = 0
         num_pages_total = 1
     else:
-        num_results = int(dict_list[0]['count'])
-        num_pages_total = int(num_results / 4) + 1
+
+        if isinstance(dict_list, list):
+            num_results = int(dict_list[0]['count'])
+            num_pages_total = int(num_results / 4) + 1
+        else:
+            num_results = dict_list['count']
+            num_pages_total = int(num_results / 4) + 1
+
 
     tparams = {
         "dic": dict_list,
