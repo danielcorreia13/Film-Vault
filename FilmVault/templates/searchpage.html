@@ -103,7 +103,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">FilmVault</a>
+      <a class="navbar-brand" href="http://127.0.0.1:8000/">FilmVault</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class ="nav navbar-nav navbar-center">
@@ -143,34 +143,31 @@
 <div class="container-fluid  text-left">
   <div class="row content">
     <div class="col-sm-2 sidenav">
+        <form action="." method="get">
+            <div class="col-sm-50">
+                <div class="btn btn-default btn-block">
+                    Genre
+                </div>
+            </div>
+            {% for g in genres %}
+                <input type="checkbox" id="cb" name="{{ g }}" value="True">
+                <label for="cb"> {{ g }}</label><br>
+            {% endfor %}
 
             <div class="col-sm-50">
-                <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Genre
-                </button>
-            </div>
-            <div class="collapse" id="collapseExample">
-              <input type="checkbox" id="Action" name="Action" value="Action">
-              <label for="Action"> Action</label><br>
-              <input type="checkbox" id="Horror" name="Horror" value="Horror">
-              <label for="Horror"> Horror</label><br>
-              <input type="checkbox" id="Comedy" name="Comedy" value="Comedy">
-              <label for="Comedy"> Comedy</label><br>
-             </div>
-            <div class="col-sm-50">
-                <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+                <div class="btn btn-default btn-block">
                     Year
-                </button>
+                </div>
             </div>
-            <div class="collapse" id="collapseExample1">
+
                <p class="text-justify">From:</p>
                 <input type="range" min="1950" max="2020" value="1950" oninput="this.nextElementSibling.value = this.value" onchange = "document.getElementById('to').min=this.value;" id="from">
                 <output>1950</output>
                 <p class="text-justify">To:</p>
-                <input type="range" min="1950"  min = "document.getElementById('from').value" max="2020" value="document.getElementById('from').value"  oninput="this.nextElementSibling.value = this.value" id="to">
-                <output></output>
-            </div>
-
+                <input type="range" min="1950"  min = "document.getElementById('from').value" max="2020" value="2020" value="document.getElementById('from').value"  oninput="this.nextElementSibling.value = this.value" id="to">
+                <output>2020</output>
+            <input type="submit" class="btn btn-dark" value="Apply" style="right: 0; position: absolute; padding: 2%"/>
+        </form>
     </div>
     <div class="col-sm-8 text-left">
 
