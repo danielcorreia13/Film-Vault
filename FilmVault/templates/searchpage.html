@@ -37,12 +37,13 @@
     </div>
     <div class="col-sm-8 text-left">
 
-        <h2>Results:</h2>
+
         <form action="." method="get">
-        <div class="dropdown ">
+        <div class="dropdown " style="display: flex; margin-top: 2%">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sort by:
           </button>
+            <h4 class="rating-card">{{ num_pages_total }} results</h4>
           <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
             <li class="dropdown-item" href="#">
                 <button class="dropdown-item" name="sort" type="submit" value="alfa_sort">Alphabetic</button>
